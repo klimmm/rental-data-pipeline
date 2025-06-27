@@ -41,16 +41,14 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         path: pipeline
 
-    - name: Checkout main data repository (sparse - data/cian_data only)
+    - name: Checkout main data repository
       run: |
-        git clone --sparse https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/klimmm/cian-tracker.git cian-tracker
+        git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/klimmm/cian-tracker.git cian-tracker
         cd cian-tracker
-        git sparse-checkout set data/cian_data
-        git sparse-checkout reapply
-        git sparse-checkout list
-        ls -la data/ || echo "No data directory"
+        echo "Full repo size: $(du -sh . | cut -f1)"
+        echo "Data directory contents:"
         ls -la data/cian_data/ || echo "No cian_data directory"
-        echo "File count in data/cian_data: $(find data/cian_data -name '*.csv' | wc -l || echo 0)"
+        echo "CSV files found: $(find data/cian_data -name '*.csv' | wc -l || echo 0)"
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
 
@@ -256,7 +254,7 @@ jobs:
         done
 
     - name: Trigger image processing workflow
-      if: steps.changes.outputs.has_changes == 'true' && env.SCRAPER_SEARCH == 'wide' && env.SCRAPER_MODE == 'update'
+      if: steps.changes.outputs.has_changes == 'true' && (inputs.search || vars.SCRAPER_SEARCH || 'wide') == 'wide' && (inputs.mode || (github.event.schedule == '0 3 * * *' && 'revise') || vars.SCRAPER_MODE || 'update') == 'update'
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
