@@ -42,11 +42,11 @@ jobs:
         path: pipeline
 
     - name: Checkout main data repository
-      uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        repository: klimmm/cian-tracker
-        path: cian-tracker
+      run: |
+        git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/klimmm/cian-tracker.git cian-tracker
+        cd cian-tracker
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
 
     - name: Set up Python
       uses: actions/setup-python@v4
