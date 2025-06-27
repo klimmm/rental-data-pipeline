@@ -43,7 +43,7 @@ jobs:
 
     - name: Checkout main data repository (sparse - data/cian_data only)
       run: |
-        git clone --sparse https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/klimmm/cian-tracker.git cian-tracker
+        git clone --depth=1 --sparse https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/klimmm/cian-tracker.git cian-tracker
         cd cian-tracker
         git sparse-checkout set data/cian_data
         git sparse-checkout reapply
