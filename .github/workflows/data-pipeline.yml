@@ -41,14 +41,15 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         path: pipeline
 
-    - name: Checkout main data repository
+    - name: Checkout main data repository (sparse - data/cian_data only)
       run: |
-        git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/klimmm/cian-tracker.git cian-tracker
+        git clone --sparse https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/klimmm/cian-tracker.git cian-tracker
         cd cian-tracker
-        echo "Full repo size: $(du -sh . | cut -f1)"
-        echo "Data directory contents:"
+        git sparse-checkout set data/cian_data
+        git sparse-checkout reapply
+        echo "Sparse checkout applied for data/cian_data"
         ls -la data/cian_data/ || echo "No cian_data directory"
-        echo "CSV files found: $(find data/cian_data -name '*.csv' | wc -l || echo 0)"
+        echo "JSON files found: $(find data/cian_data -name '*.json' | wc -l || echo 0)"
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
 
