@@ -35,23 +35,31 @@ jobs:
     timeout-minutes: ${{ github.event.schedule == '0 3 * * *' && 120 || 60 }}  # 2 hours for revise, 1 hour for update
     
     steps:
-    - name: Checkout repository
+    - name: Checkout pipeline repository
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+        path: pipeline
+
+    - name: Checkout main data repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        repository: klimmm/cian-tracker
+        path: cian-tracker
 
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
         python-version: ${{ env.PYTHON_VERSION }}
         cache: 'pip'
-        cache-dependency-path: '.github/requirements-workflow-data-pipeline.txt'
+        cache-dependency-path: 'pipeline/.github/requirements-workflow-data-pipeline.txt'
 
     - name: Cache Playwright browsers
       uses: actions/cache@v4
       with:
         path: ~/.cache/ms-playwright
-        key: playwright-${{ runner.os }}-${{ hashFiles('.github/requirements-workflow-data-pipeline.txt') }}
+        key: playwright-${{ runner.os }}-${{ hashFiles('pipeline/.github/requirements-workflow-data-pipeline.txt') }}
         restore-keys: |
           playwright-${{ runner.os }}-
 
@@ -62,7 +70,7 @@ jobs:
         
     - name: Install Python dependencies and browsers
       run: |
-        pip install -r .github/requirements-workflow-data-pipeline.txt
+        pip install -r pipeline/.github/requirements-workflow-data-pipeline.txt
         playwright install chromium --with-deps
 
     - name: Set up git configuration
@@ -72,17 +80,17 @@ jobs:
 
     - name: Install SingBox (VPN client)
       run: |
-        if [ -f .github/install-singbox.sh ]; then
-          chmod +x .github/install-singbox.sh
-          ./.github/install-singbox.sh
+        if [ -f pipeline/.github/install-singbox.sh ]; then
+          chmod +x pipeline/.github/install-singbox.sh
+          ./pipeline/.github/install-singbox.sh
         else
           echo "SingBox install script not found, skipping"
         fi
 
-    - name: Create data directory
+    - name: Ensure data directory exists
       run: |
-        mkdir -p data/cian_data
-        echo "Created data directory structure"
+        mkdir -p cian-tracker/data/cian_data
+        echo "Ensured data directory structure exists"
 
     - name: Run data scraping pipeline
       env:
@@ -91,6 +99,7 @@ jobs:
         SCRAPER_MODE: ${{ inputs.mode || (github.event.schedule == '0 3 * * *' && 'revise') || vars.SCRAPER_MODE || 'update' }}
         SCRAPER_SEARCH: ${{ inputs.search || vars.SCRAPER_SEARCH || 'wide' }}
       run: |
+        cd pipeline
         python -c "
         import asyncio
         import sys
@@ -133,7 +142,7 @@ jobs:
         async def main():
             try:
                 pipeline = ScraperPipeline(
-                    data_dir='data/cian_data',
+                    data_dir='../cian-tracker/data/cian_data',
                     use_proxies=False,
                     search_config_path=search_config_path,
                     check_missing_estimations=check_missing_estimations,
@@ -156,6 +165,7 @@ jobs:
     - name: Check for data changes
       id: changes
       run: |
+        cd cian-tracker
         git add data/
         if git diff --cached --quiet; then
           echo "has_changes=false" >> $GITHUB_OUTPUT
@@ -169,6 +179,8 @@ jobs:
     - name: Commit and push changes
       if: steps.changes.outputs.has_changes == 'true'
       run: |
+        cd cian-tracker
+        
         # Get current timestamp
         timestamp=$(date '+%Y-%m-%d %H:%M:%S')
         
@@ -224,7 +236,7 @@ jobs:
         max_retries=3
         for i in $(seq 1 $max_retries); do
           if git push origin main; then
-            echo "✅ Changes pushed successfully"
+            echo "✅ Changes pushed successfully to cian-tracker"
             break
           else
             if [ $i -eq $max_retries ]; then
