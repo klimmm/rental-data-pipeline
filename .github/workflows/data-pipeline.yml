@@ -46,6 +46,9 @@ jobs:
         git clone --filter=blob:none --sparse https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/klimmm/cian-tracker.git cian-tracker
         cd cian-tracker
         git sparse-checkout set data/cian_data
+        git sparse-checkout list
+        ls -la data/ || echo "No data directory"
+        ls -la data/cian_data/ || echo "No cian_data directory"
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
 
@@ -91,6 +94,7 @@ jobs:
     - name: Ensure data directory exists
       run: |
         mkdir -p cian-tracker/data/cian_data
+        ls -la cian-tracker/data/cian_data/ || echo "Directory is empty"
         echo "Ensured data directory structure exists"
 
     - name: Run data scraping pipeline
