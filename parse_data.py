@@ -51,8 +51,8 @@ class ScraperPipeline:
         self.update_current_search_listings = update_current_search_listings
         self.should_scrape_new = True
         self.should_hadle_errors = True
-        self.json_file_path = "data/cian_data/merged_listings.json"
-        self.json_distance = "data/cian_data/merged_listings_distance.json"
+        self.json_file_path = os.path.join(data_dir, "merged_listings.json")
+        self.json_distance = os.path.join(data_dir, "merged_listings_distance.json")
         self.search_config_path = search_config_path
         self.logger = logging.getLogger(__name__)
 
