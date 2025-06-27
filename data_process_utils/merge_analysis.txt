@@ -1,14 +1,14 @@
-SEARCH MERGE ANALYSIS - 2025-06-27 06:50:19
+SEARCH MERGE ANALYSIS - 2025-06-27 10:24:32
 ==================================================
 
 VALIDATION VERSION: 2.0 (with actual change detection)
 
 Existing data: 2799 total
-Source data: 858 total
-Merged data: 2799 total
-Overlapping offers: 858
-No changes detected in sample, showing overlapping offers
-Selected for detailed analysis: ['318100871', '213658737', '318157093']
+Source data: 856 total
+Merged data: 2800 total
+Overlapping offers: 855
+Found 1 offers with changes
+Selected for detailed analysis: ['319138886']
 
 
 SUMMARY OF ALL CHANGES
@@ -17,42 +17,193 @@ SUMMARY OF ALL CHANGES
 DETAILED CHANGES BY OFFER
 ------------------------------
 
-Offer 318463731 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/318463731' → 'https://www.cian.ru/rent/flat/318463731'
+Offer 319016271 (4 changes):
+  offer_price: '61000' → '60000'
+  metadata.last_active: '2025-06-25 21:33:00' → '2025-06-27 09:44:00'
+  rental_terms.Залог: '61000' → '60000'
+  price_changes: 'NOT_PRESENT' → '[{'change': '-1000', 'current_price': '60000', 'previou...'
+
+Offer 319105658 (1 changes):
+  metadata.last_active: '2025-06-25 20:02:00' → '2025-06-27 09:13:00'
+
+Offer 318292349 (1 changes):
+  metadata.last_active: '2025-06-26 20:03:00' → '2025-06-27 08:39:00'
+
+Offer 318617667 (1 changes):
+  metadata.last_active: '2025-06-26 08:31:00' → '2025-06-27 08:02:00'
+
+Offer 318897899 (1 changes):
+  metadata.last_active: '2025-06-26 20:04:00' → '2025-06-27 08:39:00'
 
 Offer 318479563 (2 changes):
-  metadata.last_active: '2025-06-27 05:54:00' → '2025-06-27 06:24:00'
+  metadata.last_active: '2025-06-27 06:24:00' → '2025-06-27 09:57:00'
   description: 'Срочно! Сдам на длительный срок просторную и светлую 2-...' → 'Срочно! Сдам на длительный срок просторную и светлую 2-...'
 
-Offer 318180103 (1 changes):
-  metadata.last_active: '2025-06-25 06:25:00' → '2025-06-27 06:40:00'
+Offer 301491642 (3 changes):
+  metadata.last_active: '2025-06-24 21:37:00' → '2025-06-27 09:15:00'
+  geo.full_address: 'NOT_PRESENT' → 'Москва, ул. Трехгорный Вал, 18'
+  url: 'NOT_PRESENT' → 'https://www.cian.ru/rent/flat/301491642'
+
+Offer 317782426 (1 changes):
+  metadata.last_active: '2025-06-25 08:10:00' → '2025-06-27 10:23:00'
+
+Offer 314391529 (1 changes):
+  metadata.last_active: '2025-06-26 20:06:00' → '2025-06-27 08:41:00'
+
+Offer 317779651 (1 changes):
+  metadata.last_active: '2025-06-25 13:55:00' → '2025-06-27 09:58:00'
+
+Offer 314886750 (1 changes):
+  metadata.last_active: '2025-06-26 20:09:00' → '2025-06-27 08:45:00'
+
+Offer 318571139 (2 changes):
+  metadata.last_active: '2025-06-25 15:06:00' → '2025-06-27 09:55:00'
+  description: 'Арт. 107225133 Предлагаем Вашему вниманию 2-комнатную к...' → 'Арт. 107225133 Предлагаем Вашему вниманию 2-комнатную к...'
+
+Offer 319048846 (2 changes):
+  metadata.last_active: '2025-06-26 13:00:00' → '2025-06-27 09:40:00'
+  description: 'Предлагается 1-комнатная квартира общей площадью 36 м² ...' → 'Предлагается 1-комнатная квартира общей площадью 36 м² ...'
+
+Offer 318450890 (1 changes):
+  metadata.last_active: '2025-06-25 19:04:00' → '2025-06-27 07:56:00'
+
+Offer 317061543 (1 changes):
+  metadata.last_active: '2025-06-26 20:04:00' → '2025-06-27 08:39:00'
+
+Offer 317877053 (1 changes):
+  metadata.last_active: '2025-06-26 20:08:00' → '2025-06-27 08:43:00'
+
+Offer 319098167 (1 changes):
+  metadata.last_active: '2025-06-27 00:42:00' → '2025-06-27 09:48:00'
+
+Offer 319119345 (1 changes):
+  title: 'Топ район и цена!' → '1-комн. квартира, 36 м², 8/12 этаж'
+
+Offer 318941199 (1 changes):
+  metadata.last_active: '2025-06-26 19:27:00' → '2025-06-27 10:16:00'
+
+Offer 319123417 (1 changes):
+  metadata.last_active: '2025-06-26 10:41:00' → '2025-06-27 08:16:00'
+
+Offer 318317763 (1 changes):
+  metadata.last_active: '2025-06-25 18:18:00' → '2025-06-27 07:55:00'
+
+Offer 319054042 (1 changes):
+  metadata.last_active: '2025-06-26 18:16:00' → '2025-06-27 09:41:00'
+
+Offer 318334113 (1 changes):
+  metadata.last_active: '2025-06-26 20:11:00' → '2025-06-27 08:47:00'
+
+Offer 319106769 (2 changes):
+  title: 'Студия, 13 м², 1/5 этаж' → '1-комн. квартира, 13 м², 1/5 этаж'
+  metadata.last_active: '2025-06-26 18:15:00' → '2025-06-27 08:41:00'
+
+Offer 283559531 (1 changes):
+  metadata.last_active: '2025-06-26 10:55:00' → '2025-06-22 10:02:00'
+
+Offer 319035016 (2 changes):
+  metadata.last_active: '2025-06-24 21:22:00' → '2025-06-27 07:56:00'
+  description: 'ЦАО Район Басманный.  Просторная квартира, с хорошим ре...' → 'ЦАО Район Басманный.  Просторная квартира, с хорошим ре...'
+
+Offer 318924630 (2 changes):
+  metadata.last_active: '2025-06-20 10:08:00' → '2025-06-27 10:02:00'
+  description: '5 минут пешком от четвертого выхода метро станции Делов...' → '5 минут пешком от четвертого выхода метро станции Делов...'
+
+Offer 318571303 (2 changes):
+  metadata.last_active: '2025-06-16 21:41:00' → '2025-06-27 10:04:00'
+  description: 'Предлагаем в аренду уютную двухкомнатную квартиру в Мос...' → 'квартира сдана.  Квартира площадью 62 кв. м находится н...'
+
+Offer 318376284 (1 changes):
+  metadata.last_active: '2025-06-26 14:24:00' → '2025-06-27 07:10:00'
+
+Offer 318549678 (1 changes):
+  metadata.last_active: '2025-06-26 23:36:00' → '2025-06-27 08:13:00'
 
 Offer 318388314 (2 changes):
-  metadata.last_active: '2025-06-27 05:27:00' → '2025-06-27 06:30:00'
+  metadata.last_active: '2025-06-27 06:30:00' → '2025-06-27 10:01:00'
   description: 'Сдам просторную 1-комнатную квартиру в районе с развито...' → 'Сдам просторную 1-комнатную квартиру в районе с развито...'
 
-Offer 319013353 (1 changes):
-  url: 'https://cian.ru/rent/flat/319013353' → 'https://www.cian.ru/rent/flat/319013353'
-Total offers with changes: 5 out of 858
-Total field changes detected: 8
+Offer 318396744 (1 changes):
+  metadata.last_active: '2025-06-26 20:03:00' → '2025-06-27 08:39:00'
+
+Offer 319057596 (1 changes):
+  metadata.last_active: '2025-06-25 18:46:00' → '2025-06-27 09:46:00'
+
+Offer 318891463 (1 changes):
+  metadata.last_active: '2025-06-26 20:04:00' → '2025-06-27 08:39:00'
+
+Offer 317467714 (1 changes):
+  metadata.last_active: '2025-06-26 19:28:00' → '2025-06-27 10:16:00'
+
+Offer 317777754 (1 changes):
+  metadata.last_active: '2025-06-26 19:40:00' → '2025-06-27 10:22:00'
+
+Offer 319138886 (1 changes):
+  metadata.last_active: '2025-06-26 20:05:00' → '2025-06-27 08:41:00'
+
+Offer 318554698 (4 changes):
+  metadata.unpublished_date: '2025-06-27 02:16:00' → ''
+  metadata.last_active: '2025-06-27 02:16:00' → '2025-06-27 09:49:00'
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'Подольское ш...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/318554698' → 'https://www.cian.ru/rent/flat/318554698'
+
+Offer 319013494 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/319013494' → 'https://www.cian.ru/rent/flat/319013494'
+
+Offer 313201541 (1 changes):
+  metadata.last_active: '2025-06-26 20:04:00' → '2025-06-27 08:40:00'
+
+Offer 317582039 (1 changes):
+  metadata.last_active: '2025-06-26 20:04:00' → '2025-06-27 08:39:00'
+
+Offer 318926035 (1 changes):
+  metadata.last_active: '2025-06-26 20:37:00' → '2025-06-27 09:59:00'
+
+Offer 317802028 (1 changes):
+  metadata.last_active: '2025-06-26 20:06:00' → '2025-06-27 08:41:00'
+
+Offer 316288604 (1 changes):
+  metadata.last_active: '2025-06-26 20:04:00' → '2025-06-27 08:39:00'
+
+Offer 318472236 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/318472236' → 'https://www.cian.ru/rent/flat/318472236'
+
+Offer 318499931 (1 changes):
+  metadata.last_active: '2025-06-26 20:05:00' → '2025-06-27 08:41:00'
+Total offers with changes: 46 out of 855
+Total field changes detected: 64
 
 Field change breakdown:
-  metadata.last_active: 3 changes
-  url: 2 changes
-  description: 2 changes
-  geo.address_items: 1 changes
-PARSED MERGE ANALYSIS - 2025-06-27 06:50:51
+  metadata.last_active: 43 changes
+  description: 7 changes
+  url: 4 changes
+  geo.address_items: 3 changes
+  title: 2 changes
+  offer_price: 1 changes
+  rental_terms.Залог: 1 changes
+  price_changes: 1 changes
+  geo.full_address: 1 changes
+  metadata.unpublished_date: 1 changes
+
+Most frequently changed fields:
+  metadata.last_active: 43 changes (5.0% of offers)
+  description: 7 changes (0.8% of offers)
+  url: 4 changes (0.5% of offers)
+  geo.address_items: 3 changes (0.4% of offers)
+  title: 2 changes (0.2% of offers)
+PARSED MERGE ANALYSIS - 2025-06-27 10:26:20
 ==================================================
 
 VALIDATION VERSION: 2.0 (with actual change detection)
 
-Existing data: 2799 total
-Source data: 3 total
-Merged data: 2799 total
-Overlapping offers: 3
-Found 5 offers with changes
-Selected for detailed analysis: ['312059870', '318463731', '318472236']
+Existing data: 2800 total
+Source data: 12 total
+Merged data: 2800 total
+Overlapping offers: 12
+Found 8 offers with changes
+Selected for detailed analysis: ['301491642', '319013353', '319137835']
 
 
 SUMMARY OF ALL CHANGES
@@ -61,40 +212,116 @@ SUMMARY OF ALL CHANGES
 DETAILED CHANGES BY OFFER
 ------------------------------
 
-Offer 312059870 (7 changes):
-  metadata.unpublished_date: '' → '2025-06-27 06:21:00'
-  metadata.last_active: '2025-06-17 13:14:00' → '2025-06-27 06:21:00'
-  metadata.offer_stats: '1708 просмотров, 25 за сегодня, 1077 уникальных' → '2607 просмотров, 8 за сегодня, 1648 уникальных'
+Offer 319013353 (3 changes):
+  metadata.offer_stats: '212 просмотров, 7 за сегодня, 153 уникальных' → '219 просмотров, 14 за сегодня, 160 уникальных'
   metadata.is_unpublished: 'False' → 'True'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'Новослободск...'
-  url: 'https://www.cian.ru/rent/flat/312059870' → 'https://cian.ru/rent/flat/312059870'
+  url: 'https://www.cian.ru/rent/flat/319013353' → 'https://cian.ru/rent/flat/319013353'
+
+Offer 318714725 (6 changes):
+  metadata.unpublished_date: '' → '2025-06-27 09:33:00'
+  metadata.last_active: '2025-06-14 12:43:00' → '2025-06-27 09:33:00'
+  metadata.is_unpublished: 'False' → 'True'
+  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'Елизаветинск...'
+  url: 'https://www.cian.ru/rent/flat/318714725' → 'https://cian.ru/rent/flat/318714725'
+  retries: 'NOT_PRESENT' → '2'
+
+Offer 319137835 (17 changes):
+  metadata.offer_stats: 'NOT_PRESENT' → '17 просмотров, 6 за сегодня, 14 уникальных'
+  metadata.is_unpublished: 'NOT_PRESENT' → 'False'
+  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЗАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЗАО', 'id': ...'
+  geo.metro_stations: 'NOT_PRESENT' → '[{'name': 'Кутузовская', 'walking_time': '2 мин.'}, {'n...'
+  rental_terms.Предоплата: 'NOT_PRESENT' → '1'
+  rental_terms.Условия проживания: 'NOT_PRESENT' → 'можно с детьми и животными'
+  apartment.Жилая площадь: 'NOT_PRESENT' → '34'
+  apartment.Площадь кухни: 'NOT_PRESENT' → '18'
+  apartment.Санузел: 'NOT_PRESENT' → '1 совмещенный'
+  apartment.Балкон/лоджия: 'NOT_PRESENT' → '1 балкон'
+  apartment.Вид из окон: 'NOT_PRESENT' → 'Во двор'
+  apartment.Ремонт: 'NOT_PRESENT' → 'Дизайнерский'
+  url: 'https://www.cian.ru/rent/flat/319137835' → 'https://cian.ru/rent/flat/319137835'
+  estimation_price: 'NOT_PRESENT' → '112000'
+  building: 'NOT_PRESENT' → '{'Год постройки': '1948', 'Строительная серия': 'Индиви...'
+  features: 'NOT_PRESENT' → '['Холодильник', 'Посудомоечная машина', 'Стиральная маш...'
   retries: 'NOT_PRESENT' → '1'
 
-Offer 318463731 (5 changes):
-  metadata.offer_stats: '167 просмотров, 2 за сегодня, 112 уникальных' → '168 просмотров, 3 за сегодня, 113 уникальных'
+Offer 319013494 (4 changes):
+  metadata.offer_stats: '399 просмотров, 7 за сегодня, 275 уникальных' → '410 просмотров, 19 за сегодня, 287 уникальных'
   metadata.is_unpublished: 'True' → 'False'
   geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  retries: '2' → '1'
-  url: 'https://www.cian.ru/rent/flat/318463731' → 'https://cian.ru/rent/flat/318463731'
+  url: 'https://www.cian.ru/rent/flat/319013494' → 'https://cian.ru/rent/flat/319013494'
 
-Offer 318472236 (2 changes):
-  metadata.offer_stats: '392 просмотра, 4 за сегодня, 272 уникальных' → '393 просмотра, 5 за сегодня, 273 уникальных'
+Offer 236242200 (7 changes):
+  metadata.unpublished_date: '' → '2025-06-27 09:31:00'
+  metadata.last_active: '2025-05-28 09:31:00' → '2025-06-27 09:31:00'
+  metadata.offer_stats: '1124 просмотра, 7 за сегодня, 474 уникальных с марта 20...' → '1178 просмотров, нет за сегодня, 503 уникальных с марта...'
   metadata.is_unpublished: 'False' → 'True'
-Total offers with changes: 3 out of 3
-Total field changes detected: 14
+  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'Бакунинская ...'
+  url: 'https://www.cian.ru/rent/flat/236242200' → 'https://cian.ru/rent/flat/236242200'
+  retries: 'NOT_PRESENT' → '1'
+
+Offer 318681620 (6 changes):
+  metadata.is_unpublished: 'False' → 'True'
+  metadata.last_active: '2025-06-18 16:14:00' → '2025-06-27 09:55:00'
+  metadata.unpublished_date: '' → '2025-06-27 09:55:00'
+  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ул. Зацепа',...'
+  url: 'https://www.cian.ru/rent/flat/318681620' → 'https://cian.ru/rent/flat/318681620'
+  retries: 'NOT_PRESENT' → '3'
+
+Offer 319062996 (1 changes):
+  metadata.is_unpublished: 'False' → 'True'
+
+Offer 318472236 (4 changes):
+  metadata.offer_stats: '393 просмотра, 5 за сегодня, 273 уникальных' → '397 просмотров, 9 за сегодня, 277 уникальных'
+  metadata.is_unpublished: 'True' → 'False'
+  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
+  url: 'https://www.cian.ru/rent/flat/318472236' → 'https://cian.ru/rent/flat/318472236'
+
+Offer 301491642 (4 changes):
+  metadata.offer_stats: '2398 просмотров, 40 за сегодня, 1465 уникальных' → '3654 просмотра, 36 за сегодня, 2293 уникальных'
+  metadata.is_unpublished: 'True' → 'False'
+  url: 'https://www.cian.ru/rent/flat/301491642' → 'https://cian.ru/rent/flat/301491642'
+  estimation_price: 'NOT_PRESENT' → '65000'
+
+Offer 318463731 (2 changes):
+  metadata.offer_stats: '168 просмотров, 3 за сегодня, 113 уникальных' → '170 просмотров, 5 за сегодня, 115 уникальных'
+  metadata.is_unpublished: 'False' → 'True'
+
+Offer 319045348 (1 changes):
+  metadata.is_unpublished: 'False' → 'True'
+
+Offer 318554698 (5 changes):
+  metadata.offer_stats: '434 просмотра, 3 за сегодня, 317 уникальных' → '435 просмотров, 6 за сегодня, 301 уникальный'
+  metadata.is_unpublished: 'True' → 'False'
+  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЮАО', 'id': ...'
+  url: 'https://www.cian.ru/rent/flat/318554698' → 'https://cian.ru/rent/flat/318554698'
+  estimation_price: 'NOT_PRESENT' → '98000'
+Total offers with changes: 12 out of 12
+Total field changes detected: 60
 
 Field change breakdown:
-  metadata.offer_stats: 3 changes
-  metadata.is_unpublished: 3 changes
-  geo.address_items: 2 changes
-  url: 2 changes
-  retries: 2 changes
-  metadata.unpublished_date: 1 changes
-  metadata.last_active: 1 changes
+  metadata.is_unpublished: 12 changes
+  url: 9 changes
+  metadata.offer_stats: 8 changes
+  geo.address_items: 7 changes
+  retries: 4 changes
+  metadata.unpublished_date: 3 changes
+  metadata.last_active: 3 changes
+  estimation_price: 3 changes
+  geo.metro_stations: 1 changes
+  rental_terms.Предоплата: 1 changes
+  rental_terms.Условия проживания: 1 changes
+  apartment.Жилая площадь: 1 changes
+  apartment.Площадь кухни: 1 changes
+  apartment.Санузел: 1 changes
+  apartment.Балкон/лоджия: 1 changes
+  apartment.Вид из окон: 1 changes
+  apartment.Ремонт: 1 changes
+  building: 1 changes
+  features: 1 changes
 
 Most frequently changed fields:
-  metadata.offer_stats: 3 changes (100.0% of offers)
-  metadata.is_unpublished: 3 changes (100.0% of offers)
-  geo.address_items: 2 changes (66.7% of offers)
-  url: 2 changes (66.7% of offers)
-  retries: 2 changes (66.7% of offers)
+  metadata.is_unpublished: 12 changes (100.0% of offers)
+  url: 9 changes (75.0% of offers)
+  metadata.offer_stats: 8 changes (66.7% of offers)
+  geo.address_items: 7 changes (58.3% of offers)
+  retries: 4 changes (33.3% of offers)
