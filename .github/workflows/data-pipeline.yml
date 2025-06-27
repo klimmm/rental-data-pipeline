@@ -99,6 +99,7 @@ jobs:
     - name: Run data scraping pipeline
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+        BASE_URL: ${{ secrets.BASE_URL }}
         # Add any other environment variables needed for VPN/proxies
         SCRAPER_MODE: ${{ inputs.mode || (github.event.schedule == '0 3 * * *' && 'revise') || vars.SCRAPER_MODE || 'update' }}
         SCRAPER_SEARCH: ${{ inputs.search || vars.SCRAPER_SEARCH || 'wide' }}
