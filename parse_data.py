@@ -6,23 +6,23 @@ import logging
 import yaml
 import math
 
-from data_pipeline.search_configs.construct_url import (
+from search_configs.construct_url import (
     construct_search_url,
     generate_search_page_urls,
     generate_listing_page_urls,
 )
 
-from data_pipeline.data_process_utils.json_to_csv import convert_json_to_csv
-from data_pipeline.data_process_utils.transform import transform_listings_data
-from data_pipeline.data_process_utils.normalize_data import normalize_listings
-from data_pipeline.data_process_utils.merge_data import merge_data
-from data_pipeline.data_process_utils.validation import validate_merge
-from data_pipeline.scraper.scraper_config import AsyncConfig
-from data_pipeline.scraper.async_scraper import AsyncScraper
-from data_pipeline.scraper.distance import calculate_and_update_distances
+from data_process_utils.json_to_csv import convert_json_to_csv
+from data_process_utils.transform import transform_listings_data
+from data_process_utils.normalize_data import normalize_listings
+from data_process_utils.merge_data import merge_data
+from data_process_utils.validation import validate_merge
+from scraper.scraper_config import AsyncConfig
+from scraper.async_scraper import AsyncScraper
+from scraper.distance import calculate_and_update_distances
 
 try:
-    from data_pipeline.vpn_manager.vpn_manager import VPNManager
+    from vpn_manager.vpn_manager import VPNManager
 
     vpn_available = True
 except ImportError:
@@ -320,7 +320,7 @@ class ScraperPipeline:
             self.parsed_listings = await self._run_scraper(
                 "listing_pages", listing_page_urls
             )
-            if self.should_hadle_errors:
+            if self.check_if_unpublished:
                 self.hadle_errors()
             self.merged_data = self._normalize_merge_validate_save(
                 self.merged_data,

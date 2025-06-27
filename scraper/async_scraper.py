@@ -78,6 +78,8 @@ class AsyncScraper:
 
             # Create browser
             browser = await self.create_browser(playwright, worker_id)
+            sleep_time = 0.5 + random.uniform(0, 0.5)
+            await asyncio.sleep(sleep_time)
             try:
                 while True:
                     if pages_processed >= self.config.max_pages_per_browser:

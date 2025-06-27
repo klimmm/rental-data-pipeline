@@ -10,7 +10,7 @@ class AsyncConfig:
     max_concurrent: int = 2
     max_requests_per_session: int = 20
     max_pages_per_browser: int = 10
-    max_retries: int = 3
+    max_retries: int = 5
     use_proxies: bool = True
 
     timeout: int = 30
@@ -55,7 +55,7 @@ class AsyncConfig:
 
     accept_language: str = "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7"
     proxy_accept_languages = {
-        # Western Europe
+        "none": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
         "italy": "it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7",
         "france": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
         "netherlands": "nl-NL,nl;q=0.9,en-US;q=0.8,en;q=0.7",
@@ -93,7 +93,7 @@ class AsyncConfig:
         ]
     )
     proxy_user_agents = {
-        # Working proxies
+        "none": "PythonGeocoder/1.0",
         "italy": "ItaliaMapServices/2.3.1 (support@mapservices.it)",
         "netherlands": "NLRoutePlanner/3.4.2 (https://routeplanner-nl.com/contact)",
         "finland": "NordicLocationFinder/2.1.0 (info@nordic-location.fi)",

@@ -175,7 +175,7 @@ async def main(
     num_workers=4,
     proxy_configs=None,
 ):
-    config = AsyncConfig(max_concurrent=9, max_retries=3, timeout=20)
+    config = AsyncConfig(max_concurrent=4, max_retries=3, timeout=20)
     
     # Handle proxy configs
     if proxy_configs is None and VPNManager is not None:

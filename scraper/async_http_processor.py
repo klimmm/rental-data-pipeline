@@ -85,6 +85,8 @@ class AsyncHttpProcessor:
 
         # Create client session with proxy
         session = await self.create_session(worker_id)
+        sleep_time = 0.5 + random.uniform(0, 0.5)
+        await asyncio.sleep(sleep_time)
         try:
             while True:
                 # Check if session needs recreation
@@ -127,11 +129,10 @@ class AsyncHttpProcessor:
         proxy = await self.get_available_proxy()
         user_agent = None
         accept_language = None
-        if proxy:
-            proxy_name = proxy["server_name"]
-            user_agent = self.config.proxy_user_agents.get(proxy_name)
-            accept_language = self.config.proxy_accept_languages[proxy_name]
-            logger.info(f"Worker {worker_id} using user agent {user_agent}, language {accept_language}")
+        proxy_name = proxy["server_name"] if proxy else "none"
+        user_agent = self.config.proxy_user_agents.get(proxy_name)
+        accept_language = self.config.proxy_accept_languages[proxy_name]
+        logger.info(f"Worker {worker_id} using user agent {user_agent}, language {accept_language}")
             
         # Setup session options
         session_options = {
@@ -151,7 +152,7 @@ class AsyncHttpProcessor:
 
             # Store metadata
             session._worker_id = worker_id
-            session._proxy_name = proxy["server_name"] if proxy else "none"
+            session._proxy_name = proxy_name
             # logger.info(f"Worker {worker_id} using proxy {session._proxy_name}")
 
             return session
