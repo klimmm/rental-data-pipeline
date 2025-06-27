@@ -1,13 +1,8 @@
 import os
-from datetime import datetime, timedelta
-import re
-import yaml
-import math
-import json
 
-
-base_url = "https://cian.ru"
-# base_url = os.getenv("BASE_URL")
+base_url = os.getenv("BASE_URL")
+if not base_url:
+    raise ValueError("BASE_URL environment variable is required")
 
 
 def generate_search_page_urls(base_url, total_pages):
