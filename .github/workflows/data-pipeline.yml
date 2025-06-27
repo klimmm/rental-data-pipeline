@@ -43,12 +43,14 @@ jobs:
 
     - name: Checkout main data repository (sparse - data/cian_data only)
       run: |
-        git clone --filter=blob:none --sparse https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/klimmm/cian-tracker.git cian-tracker
+        git clone --sparse https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/klimmm/cian-tracker.git cian-tracker
         cd cian-tracker
         git sparse-checkout set data/cian_data
+        git sparse-checkout reapply
         git sparse-checkout list
         ls -la data/ || echo "No data directory"
         ls -la data/cian_data/ || echo "No cian_data directory"
+        echo "File count in data/cian_data: $(find data/cian_data -name '*.csv' | wc -l || echo 0)"
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
 
