@@ -1,0 +1,28 @@
+{
+  "name": "france",
+  "country": "france",
+  "protocol": "vless",
+  "server": {
+    "host": "lupivera.site",
+    "port": 8443
+  },
+  "auth": {
+    "user_id": "c8cc3b7b-9496-4e85-b02d-e5e87dafdbc1",
+    "flow": "xtls-rprx-vision"
+  },
+  "transport": {
+    "type": "tcp",
+    "security": "reality"
+  },
+  "tls": {
+    "server_name": "lupivera.com",
+    "fingerprint": "random",
+    "public_key": "JJtWBWNNdTXyoUjAEUj4TmLobXhWeov6gN49GbbwXmA",
+    "short_id": "4fdbcc4ddf968444"
+  },
+  "metadata": {
+    "original_comment": "🇫🇷 Франция",
+    "original_url": "",
+    "source": "subscription"
+  }
+}

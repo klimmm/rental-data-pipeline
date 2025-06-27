@@ -1,0 +1,28 @@
+{
+  "name": "russia",
+  "country": "russia",
+  "protocol": "vless",
+  "server": {
+    "host": "zolinder.online",
+    "port": 8443
+  },
+  "auth": {
+    "user_id": "ae22405d-ac04-4a17-8b3a-6359c9ec4bed",
+    "flow": "xtls-rprx-vision"
+  },
+  "transport": {
+    "type": "tcp",
+    "security": "reality"
+  },
+  "tls": {
+    "server_name": "zolinder.ru",
+    "fingerprint": "random",
+    "public_key": "2566-27FWlgHXfhcbxCIZ2RTD_rqHzLhWfcvNuNpuGc",
+    "short_id": "abe01dc81d7c1117"
+  },
+  "metadata": {
+    "original_comment": "🇷🇺 Россия",
+    "original_url": "",
+    "source": "subscription"
+  }
+}

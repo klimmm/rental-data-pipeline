@@ -1,0 +1,28 @@
+{
+  "name": "uk",
+  "country": "uk",
+  "protocol": "vless",
+  "server": {
+    "host": "crapelo.site",
+    "port": 8443
+  },
+  "auth": {
+    "user_id": "81434eae-bf29-496a-922d-a1bcdf66d5d9",
+    "flow": "xtls-rprx-vision"
+  },
+  "transport": {
+    "type": "tcp",
+    "security": "reality"
+  },
+  "tls": {
+    "server_name": "norkello.com",
+    "fingerprint": "random",
+    "public_key": "NqSAN1b9lkRLJRn5TEDG0wj7ljN8WvMdXyokJXzIxCs",
+    "short_id": "f48e9fd6d8333785"
+  },
+  "metadata": {
+    "original_comment": "🏴󠁧󠁢󠁥󠁮󠁧󠁿 Англия",
+    "original_url": "",
+    "source": "subscription"
+  }
+}

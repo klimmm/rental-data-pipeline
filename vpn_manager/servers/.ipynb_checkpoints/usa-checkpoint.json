@@ -1,0 +1,28 @@
+{
+  "name": "usa",
+  "country": "usa",
+  "protocol": "vless",
+  "server": {
+    "host": "jallermo.site",
+    "port": 8443
+  },
+  "auth": {
+    "user_id": "303500d8-9e79-4ef1-962e-f6434c957da6",
+    "flow": "xtls-rprx-vision"
+  },
+  "transport": {
+    "type": "tcp",
+    "security": "reality"
+  },
+  "tls": {
+    "server_name": "yandex.ru",
+    "fingerprint": "random",
+    "public_key": "61Svf2Pd08DRvSgCHyI_J-F7lhPLd_hg3mS_byFl_h0",
+    "short_id": "fb1a8818b2ec7f2e"
+  },
+  "metadata": {
+    "original_comment": "🇺🇸 США",
+    "original_url": "",
+    "source": "subscription"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "kazakhstan",
+  "country": "kazakhstan",
+  "protocol": "vless",
+  "server": {
+    "host": "frinkory.ru",
+    "port": 8443
+  },
+  "auth": {
+    "user_id": "4c143089-1f11-486f-b8bd-3d3dfebf7801",
+    "flow": "xtls-rprx-vision"
+  },
+  "transport": {
+    "type": "tcp",
+    "security": "reality"
+  },
+  "tls": {
+    "server_name": "frinkory.kz",
+    "fingerprint": "random",
+    "public_key": "TVgpeTzjU9fQNdJIW8WxAn_EC5FFxRQfadDjH30Xz3c",
+    "short_id": "e8cf3537a5692ff1"
+  },
+  "metadata": {
+    "original_comment": "🇰🇿 Казахстан",
+    "original_url": "",
+    "source": "subscription"
+  }
+}

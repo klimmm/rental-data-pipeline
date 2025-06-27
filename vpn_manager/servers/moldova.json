@@ -1,0 +1,28 @@
+{
+  "name": "moldova",
+  "country": "moldova",
+  "protocol": "vless",
+  "server": {
+    "host": "elvintoma.ru",
+    "port": 8443
+  },
+  "auth": {
+    "user_id": "58a07a9d-257f-4b77-a4cf-2ef50b949911",
+    "flow": "xtls-rprx-vision"
+  },
+  "transport": {
+    "type": "tcp",
+    "security": "reality"
+  },
+  "tls": {
+    "server_name": "elvintoma.org",
+    "fingerprint": "random",
+    "public_key": "UcXxe5DhOXmvSidTApgFLPIR6RM9aVGk4LaNrjUFeHc",
+    "short_id": "a7625e8e59293235"
+  },
+  "metadata": {
+    "original_comment": "🇲🇩 Молдова",
+    "original_url": "",
+    "source": "subscription"
+  }
+}

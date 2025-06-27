@@ -1,0 +1,28 @@
+{
+  "name": "turkey",
+  "country": "turkey",
+  "protocol": "vless",
+  "server": {
+    "host": "quarenty.site",
+    "port": 8443
+  },
+  "auth": {
+    "user_id": "64b8d608-91a6-4a43-8a51-e4169a10187e",
+    "flow": "xtls-rprx-vision"
+  },
+  "transport": {
+    "type": "tcp",
+    "security": "reality"
+  },
+  "tls": {
+    "server_name": "www.google.com",
+    "fingerprint": "random",
+    "public_key": "zii4nGNapnFKL6SN8GzWNqFlElBvUCUFUThEP0kFH04",
+    "short_id": "205748bc0f24a747"
+  },
+  "metadata": {
+    "original_comment": "🇹🇷 Турция",
+    "original_url": "",
+    "source": "subscription"
+  }
+}

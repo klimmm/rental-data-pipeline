@@ -1,0 +1,28 @@
+{
+  "name": "netherlands",
+  "country": "netherlands",
+  "protocol": "vless",
+  "server": {
+    "host": "midorinote.online",
+    "port": 8443
+  },
+  "auth": {
+    "user_id": "75709658-4158-4ea7-b8fd-a77fe43b7ab9",
+    "flow": "xtls-rprx-vision"
+  },
+  "transport": {
+    "type": "tcp",
+    "security": "reality"
+  },
+  "tls": {
+    "server_name": "midorinote.org",
+    "fingerprint": "random",
+    "public_key": "Cxvc5bVMKln6RxPs5MtviUZNDsmpfuYUK8UFBlcBaS0",
+    "short_id": "387d2fb5f83c0cde"
+  },
+  "metadata": {
+    "original_comment": "🇳🇱 Нидерланды",
+    "original_url": "",
+    "source": "subscription"
+  }
+}

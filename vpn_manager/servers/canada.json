@@ -1,0 +1,28 @@
+{
+  "name": "canada",
+  "country": "canada",
+  "protocol": "vless",
+  "server": {
+    "host": "wintassa.site",
+    "port": 8443
+  },
+  "auth": {
+    "user_id": "794bd8b3-69c1-43f8-819d-6bf218b53f19",
+    "flow": "xtls-rprx-vision"
+  },
+  "transport": {
+    "type": "tcp",
+    "security": "reality"
+  },
+  "tls": {
+    "server_name": "yandex.ru",
+    "fingerprint": "random",
+    "public_key": "CfFyRy7BlzQMmXIeWQI1QaBwL8z1TVoaTFmGSRsqXHs",
+    "short_id": "18260a022e1511e7"
+  },
+  "metadata": {
+    "original_comment": "🇨🇦 Канада",
+    "original_url": "",
+    "source": "subscription"
+  }
+}
