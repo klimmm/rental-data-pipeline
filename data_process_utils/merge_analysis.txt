@@ -1,14 +1,14 @@
-SEARCH MERGE ANALYSIS - 2025-06-27 12:47:26
+SEARCH MERGE ANALYSIS - 2025-06-27 12:57:25
 ==================================================
 
 VALIDATION VERSION: 2.0 (with actual change detection)
 
-Existing data: 2808 total
-Source data: 849 total
-Merged data: 2809 total
-Overlapping offers: 848
-Found 1 offers with changes
-Selected for detailed analysis: ['319110312']
+Existing data: 2809 total
+Source data: 848 total
+Merged data: 2810 total
+Overlapping offers: 847
+No changes detected in sample, showing overlapping offers
+Selected for detailed analysis: ['319035842', '318817104', '263684334']
 
 
 SUMMARY OF ALL CHANGES
@@ -17,185 +17,122 @@ SUMMARY OF ALL CHANGES
 DETAILED CHANGES BY OFFER
 ------------------------------
 
-Offer 230147563 (2 changes):
+Offer 239254274 (2 changes):
   geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/230147563' → 'https://www.cian.ru/rent/flat/230147563'
-
-Offer 245689151 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЮЗАО', 'id':...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮЗАО', 'id': ...'
-  url: 'https://cian.ru/rent/flat/245689151' → 'https://www.cian.ru/rent/flat/245689151'
-
-Offer 319110312 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/319110312' → 'https://www.cian.ru/rent/flat/319110312'
-
-Offer 318799226 (1 changes):
-  metadata.last_active: '2025-06-26 10:55:00' → '2025-06-27 12:43:00'
-
-Offer 319173759 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/319173759' → 'https://www.cian.ru/rent/flat/319173759'
-
-Offer 319124880 (1 changes):
-  metadata.last_active: '2025-06-26 11:30:00' → '2025-06-27 12:35:00'
-
-Offer 198255278 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/198255278' → 'https://www.cian.ru/rent/flat/198255278'
-
-Offer 188857055 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/188857055' → 'https://www.cian.ru/rent/flat/188857055'
-
-Offer 229090255 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/229090255' → 'https://www.cian.ru/rent/flat/229090255'
-
-Offer 217862616 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/217862616' → 'https://www.cian.ru/rent/flat/217862616'
-
-Offer 228166483 (1 changes):
-  url: 'https://cian.ru/rent/flat/228166483' → 'https://www.cian.ru/rent/flat/228166483'
-
-Offer 202716639 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/202716639' → 'https://www.cian.ru/rent/flat/202716639'
-
-Offer 318334113 (5 changes):
-  offer_price: '52000' → '50000'
-  metadata.last_active: '2025-06-27 08:47:00' → '2025-06-27 12:43:00'
-  rental_terms.Залог: '52000' → '50000'
-  description: 'Номер лота - 3522225 Сдается двухкомнатная квартира в р...' → 'Номер лота: 3522225 Сдается двухкомнатная квартира в ра...'
-  price_changes: 'NOT_PRESENT' → '[{'change': '-2000', 'current_price': '50000', 'previou...'
-
-Offer 318592776 (1 changes):
-  metadata.last_active: '2025-06-26 10:55:00' → '2025-06-27 12:43:00'
-
-Offer 318937628 (1 changes):
-  metadata.last_active: '2025-06-26 14:30:00' → '2025-06-27 12:40:00'
-
-Offer 318167836 (1 changes):
-  metadata.last_active: '2025-06-26 14:30:00' → '2025-06-27 12:42:00'
-
-Offer 251333595 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/251333595' → 'https://www.cian.ru/rent/flat/251333595'
+  url: 'https://cian.ru/rent/flat/239254274' → 'https://www.cian.ru/rent/flat/239254274'
 
 Offer 248542587 (3 changes):
   metadata.last_active: '2025-01-01 03:00:00' → '2025-06-24 12:18:00'
   geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
   url: 'https://cian.ru/rent/flat/248542587' → 'https://www.cian.ru/rent/flat/248542587'
 
+Offer 317132235 (1 changes):
+  metadata.last_active: '2025-06-26 11:05:00' → '2025-06-27 12:53:00'
+
+Offer 317199762 (1 changes):
+  metadata.last_active: '2025-06-19 12:08:00' → '2025-06-27 12:55:00'
+
+Offer 242656875 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/242656875' → 'https://www.cian.ru/rent/flat/242656875'
+
 Offer 168833097 (2 changes):
   geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
   url: 'https://cian.ru/rent/flat/168833097' → 'https://www.cian.ru/rent/flat/168833097'
+
+Offer 319124921 (1 changes):
+  metadata.last_active: '2025-06-26 11:31:00' → '2025-06-27 12:51:00'
+
+Offer 202804508 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/202804508' → 'https://www.cian.ru/rent/flat/202804508'
+
+Offer 228166483 (1 changes):
+  url: 'https://cian.ru/rent/flat/228166483' → 'https://www.cian.ru/rent/flat/228166483'
+
+Offer 319143572 (2 changes):
+  title: '2-комн. квартира, 47 м², 5/5 этаж' → 'На ключах!'
+  metadata.last_active: '2025-06-26 20:50:00' → '2025-06-27 12:45:00'
+
+Offer 157982744 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/157982744' → 'https://www.cian.ru/rent/flat/157982744'
+
+Offer 199516018 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/199516018' → 'https://www.cian.ru/rent/flat/199516018'
+
+Offer 317605589 (1 changes):
+  metadata.last_active: '2025-06-26 11:07:00' → '2025-06-27 12:55:00'
+
+Offer 198255278 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/198255278' → 'https://www.cian.ru/rent/flat/198255278'
+
+Offer 319023444 (1 changes):
+  metadata.last_active: '2025-06-26 16:21:00' → '2025-06-27 12:45:00'
+
+Offer 162991899 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЗАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЗАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/162991899' → 'https://www.cian.ru/rent/flat/162991899'
+
+Offer 233126290 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/233126290' → 'https://www.cian.ru/rent/flat/233126290'
 
 Offer 254584239 (3 changes):
   geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
   geo.full_address: 'Москва, Малый Краснопрудный туп., 1С1' → 'Москва, Малый Краснопрудный тупик, 1С1'
   url: 'https://cian.ru/rent/flat/254584239' → 'https://www.cian.ru/rent/flat/254584239'
 
-Offer 199516018 (2 changes):
+Offer 256941696 (2 changes):
   geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/199516018' → 'https://www.cian.ru/rent/flat/199516018'
-
-Offer 318392008 (1 changes):
-  metadata.last_active: '2025-06-26 20:33:00' → '2025-06-27 12:37:00'
-
-Offer 213658737 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЮЗАО', 'id':...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮЗАО', 'id': ...'
-  url: 'https://cian.ru/rent/flat/213658737' → 'https://www.cian.ru/rent/flat/213658737'
-
-Offer 157982744 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/157982744' → 'https://www.cian.ru/rent/flat/157982744'
-
-Offer 213744103 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/213744103' → 'https://www.cian.ru/rent/flat/213744103'
-
-Offer 253546183 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'САО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'САО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/253546183' → 'https://www.cian.ru/rent/flat/253546183'
-
-Offer 292091328 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЗАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЗАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/292091328' → 'https://www.cian.ru/rent/flat/292091328'
-
-Offer 306069680 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/306069680' → 'https://www.cian.ru/rent/flat/306069680'
-
-Offer 165701614 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/165701614' → 'https://www.cian.ru/rent/flat/165701614'
-
-Offer 225522389 (3 changes):
-  metadata.last_active: '2025-06-22 15:08:00' → '2025-06-27 12:44:00'
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'САО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'САО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/225522389' → 'https://www.cian.ru/rent/flat/225522389'
-
-Offer 316578457 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/316578457' → 'https://www.cian.ru/rent/flat/316578457'
-
-Offer 219753341 (1 changes):
-  url: 'https://cian.ru/rent/flat/219753341' → 'https://www.cian.ru/rent/flat/219753341'
-
-Offer 205028297 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/205028297' → 'https://www.cian.ru/rent/flat/205028297'
-
-Offer 227160653 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/227160653' → 'https://www.cian.ru/rent/flat/227160653'
-
-Offer 319171924 (1 changes):
-  url: 'https://cian.ru/rent/flat/319171924' → 'https://www.cian.ru/rent/flat/319171924'
-
-Offer 202804508 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/202804508' → 'https://www.cian.ru/rent/flat/202804508'
-
-Offer 224186630 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЮАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/224186630' → 'https://www.cian.ru/rent/flat/224186630'
-
-Offer 219980813 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/219980813' → 'https://www.cian.ru/rent/flat/219980813'
-
-Offer 242656875 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/242656875' → 'https://www.cian.ru/rent/flat/242656875'
-
-Offer 319170616 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/319170616' → 'https://www.cian.ru/rent/flat/319170616'
-
-Offer 239254274 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/239254274' → 'https://www.cian.ru/rent/flat/239254274'
-
-Offer 319169092 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЮАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/319169092' → 'https://www.cian.ru/rent/flat/319169092'
+  url: 'https://cian.ru/rent/flat/256941696' → 'https://www.cian.ru/rent/flat/256941696'
 
 Offer 251230061 (2 changes):
   geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЗАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЗАО', 'id': '...'
   url: 'https://cian.ru/rent/flat/251230061' → 'https://www.cian.ru/rent/flat/251230061'
 
-Offer 162991899 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЗАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЗАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/162991899' → 'https://www.cian.ru/rent/flat/162991899'
+Offer 317568092 (1 changes):
+  metadata.last_active: '2025-06-27 10:40:00' → '2025-06-27 12:48:00'
 
-Offer 318937645 (1 changes):
-  metadata.last_active: '2025-06-26 18:02:00' → '2025-06-27 12:42:00'
+Offer 317385751 (1 changes):
+  metadata.last_active: '2025-06-26 11:03:00' → '2025-06-27 12:51:00'
 
-Offer 233126290 (2 changes):
+Offer 319169092 (2 changes):
+  metadata.last_active: '2025-06-27 11:41:00' → '2025-06-27 12:53:00'
+  description: 'С 7 июля!  Сдается очень уютная светлая однокомнатная к...' → 'С 7 июля!  Сдается очень уютная светлая однокомнатная к...'
+
+Offer 224186630 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЮАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/224186630' → 'https://www.cian.ru/rent/flat/224186630'
+
+Offer 213744103 (2 changes):
   geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/233126290' → 'https://www.cian.ru/rent/flat/233126290'
+  url: 'https://cian.ru/rent/flat/213744103' → 'https://www.cian.ru/rent/flat/213744103'
+
+Offer 213658737 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЮЗАО', 'id':...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮЗАО', 'id': ...'
+  url: 'https://cian.ru/rent/flat/213658737' → 'https://www.cian.ru/rent/flat/213658737'
+
+Offer 235220712 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/235220712' → 'https://www.cian.ru/rent/flat/235220712'
+
+Offer 318592788 (1 changes):
+  metadata.last_active: '2025-06-27 10:40:00' → '2025-06-27 12:45:00'
+
+Offer 253546183 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'САО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'САО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/253546183' → 'https://www.cian.ru/rent/flat/253546183'
+
+Offer 219980813 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/219980813' → 'https://www.cian.ru/rent/flat/219980813'
+
+Offer 231321334 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЗАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЗАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/231321334' → 'https://www.cian.ru/rent/flat/231321334'
 
 Offer 191620026 (2 changes):
   geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЮЗАО', 'id':...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮЗАО', 'id': ...'
@@ -205,77 +142,140 @@ Offer 191081212 (2 changes):
   geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
   url: 'https://cian.ru/rent/flat/191081212' → 'https://www.cian.ru/rent/flat/191081212'
 
-Offer 318770613 (1 changes):
-  metadata.last_active: '2025-06-25 12:04:00' → '2025-06-27 12:35:00'
+Offer 202716639 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/202716639' → 'https://www.cian.ru/rent/flat/202716639'
 
-Offer 231321334 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЗАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЗАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/231321334' → 'https://www.cian.ru/rent/flat/231321334'
+Offer 235206883 (1 changes):
+  url: 'https://cian.ru/rent/flat/235206883' → 'https://www.cian.ru/rent/flat/235206883'
+
+Offer 205028297 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/205028297' → 'https://www.cian.ru/rent/flat/205028297'
+
+Offer 225522389 (3 changes):
+  metadata.last_active: '2025-06-27 12:44:00' → '2025-06-27 12:54:00'
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'САО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'САО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/225522389' → 'https://www.cian.ru/rent/flat/225522389'
+
+Offer 318937660 (1 changes):
+  metadata.last_active: '2025-06-26 15:30:00' → '2025-06-27 12:44:00'
+
+Offer 230147563 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/230147563' → 'https://www.cian.ru/rent/flat/230147563'
+
+Offer 317614576 (1 changes):
+  metadata.last_active: '2025-06-26 11:07:00' → '2025-06-27 12:56:00'
+
+Offer 251333595 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/251333595' → 'https://www.cian.ru/rent/flat/251333595'
+
+Offer 311108723 (1 changes):
+  metadata.last_active: '2025-06-24 14:53:00' → '2025-06-27 12:49:00'
+
+Offer 318825871 (1 changes):
+  metadata.last_active: '2025-06-26 21:10:00' → '2025-06-27 12:51:00'
+
+Offer 245689151 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЮЗАО', 'id':...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮЗАО', 'id': ...'
+  url: 'https://cian.ru/rent/flat/245689151' → 'https://www.cian.ru/rent/flat/245689151'
+
+Offer 236200250 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/236200250' → 'https://www.cian.ru/rent/flat/236200250'
+
+Offer 317420962 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/317420962' → 'https://www.cian.ru/rent/flat/317420962'
+
+Offer 318895959 (1 changes):
+  metadata.last_active: '2025-06-26 13:03:00' → '2025-06-27 12:46:00'
 
 Offer 247360637 (2 changes):
   geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЮАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮАО', 'id': '...'
   url: 'https://cian.ru/rent/flat/247360637' → 'https://www.cian.ru/rent/flat/247360637'
 
-Offer 235220712 (2 changes):
+Offer 188857055 (2 changes):
   geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/235220712' → 'https://www.cian.ru/rent/flat/235220712'
+  url: 'https://cian.ru/rent/flat/188857055' → 'https://www.cian.ru/rent/flat/188857055'
 
-Offer 318969376 (1 changes):
-  metadata.last_active: '2025-06-21 19:04:00' → '2025-06-27 12:40:00'
-
-Offer 319045348 (2 changes):
-  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЮЗАО', 'id':...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮЗАО', 'id': ...'
-  url: 'https://cian.ru/rent/flat/319045348' → 'https://www.cian.ru/rent/flat/319045348'
-
-Offer 318814594 (1 changes):
-  metadata.last_active: '2025-06-27 11:40:00' → '2025-06-27 12:36:00'
-
-Offer 318755519 (1 changes):
-  metadata.last_active: '2025-06-26 10:55:00' → '2025-06-27 12:44:00'
-
-Offer 256941696 (2 changes):
+Offer 227160653 (2 changes):
   geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
-  url: 'https://cian.ru/rent/flat/256941696' → 'https://www.cian.ru/rent/flat/256941696'
+  url: 'https://cian.ru/rent/flat/227160653' → 'https://www.cian.ru/rent/flat/227160653'
 
-Offer 235206883 (1 changes):
-  url: 'https://cian.ru/rent/flat/235206883' → 'https://www.cian.ru/rent/flat/235206883'
+Offer 219753341 (1 changes):
+  url: 'https://cian.ru/rent/flat/219753341' → 'https://www.cian.ru/rent/flat/219753341'
 
-Offer 318816949 (1 changes):
-  metadata.last_active: '2025-06-17 17:11:00' → '2025-06-27 12:37:00'
+Offer 165701614 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/165701614' → 'https://www.cian.ru/rent/flat/165701614'
+
+Offer 318553870 (1 changes):
+  metadata.last_active: '2025-06-19 12:09:00' → '2025-06-27 12:55:00'
+
+Offer 226643997 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/226643997' → 'https://www.cian.ru/rent/flat/226643997'
+
+Offer 172596396 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/172596396' → 'https://www.cian.ru/rent/flat/172596396'
+
+Offer 217862616 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/217862616' → 'https://www.cian.ru/rent/flat/217862616'
+
+Offer 318985946 (1 changes):
+  metadata.last_active: '2025-06-23 12:07:00' → '2025-06-27 12:50:00'
+
+Offer 229090255 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/229090255' → 'https://www.cian.ru/rent/flat/229090255'
+
+Offer 319174713 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/319174713' → 'https://www.cian.ru/rent/flat/319174713'
+
+Offer 217352543 (2 changes):
+  geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
+  url: 'https://cian.ru/rent/flat/217352543' → 'https://www.cian.ru/rent/flat/217352543'
 
 Offer 221924563 (2 changes):
   geo.address_items: '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...' → '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...'
   url: 'https://cian.ru/rent/flat/221924563' → 'https://www.cian.ru/rent/flat/221924563'
-Total offers with changes: 60 out of 848
-Total field changes detected: 110
+
+Offer 317614575 (1 changes):
+  metadata.last_active: '2025-06-26 11:07:00' → '2025-06-27 12:56:00'
+Total offers with changes: 62 out of 847
+Total field changes detected: 108
 
 Field change breakdown:
-  url: 47 changes
-  geo.address_items: 43 changes
-  metadata.last_active: 15 changes
-  offer_price: 1 changes
-  rental_terms.Залог: 1 changes
-  description: 1 changes
-  price_changes: 1 changes
+  url: 44 changes
+  geo.address_items: 41 changes
+  metadata.last_active: 20 changes
+  title: 1 changes
   geo.full_address: 1 changes
+  description: 1 changes
 
 Most frequently changed fields:
-  url: 47 changes (5.5% of offers)
-  geo.address_items: 43 changes (5.1% of offers)
-  metadata.last_active: 15 changes (1.8% of offers)
-  offer_price: 1 changes (0.1% of offers)
-  rental_terms.Залог: 1 changes (0.1% of offers)
-PARSED MERGE ANALYSIS - 2025-06-27 12:52:01
+  url: 44 changes (5.2% of offers)
+  geo.address_items: 41 changes (4.8% of offers)
+  metadata.last_active: 20 changes (2.4% of offers)
+  title: 1 changes (0.1% of offers)
+  geo.full_address: 1 changes (0.1% of offers)
+PARSED MERGE ANALYSIS - 2025-06-27 12:58:08
 ==================================================
 
 VALIDATION VERSION: 2.0 (with actual change detection)
 
-Existing data: 2809 total
-Source data: 47 total
-Merged data: 2809 total
-Overlapping offers: 47
-Found 10 offers with changes
-Selected for detailed analysis: ['165701614', '188857055', '172596396']
+Existing data: 2810 total
+Source data: 5 total
+Merged data: 2810 total
+Overlapping offers: 5
+Found 8 offers with changes
+Selected for detailed analysis: ['275829825', '318414409', '317420962']
 
 
 SUMMARY OF ALL CHANGES
@@ -284,362 +284,76 @@ SUMMARY OF ALL CHANGES
 DETAILED CHANGES BY OFFER
 ------------------------------
 
-Offer 202804508 (5 changes):
-  metadata.offer_stats: '4601 просмотр, 49 за сегодня, 1212 уникальных с марта 2...' → '4607 просмотров, 55 за сегодня, 1218 уникальных с марта...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/202804508' → 'https://cian.ru/rent/flat/202804508'
-  retries: 'NOT_PRESENT' → '2'
-
-Offer 168833097 (4 changes):
-  metadata.offer_stats: '1565 просмотров, 12 за сегодня, 184 уникальных с марта ...' → '1566 просмотров, 13 за сегодня, 185 уникальных с марта ...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/168833097' → 'https://cian.ru/rent/flat/168833097'
-
-Offer 198255278 (5 changes):
-  metadata.offer_stats: '16398 просмотров, 7 за сегодня, 4434 уникальных с марта...' → '16399 просмотров, 8 за сегодня, 4435 уникальных с марта...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/198255278' → 'https://cian.ru/rent/flat/198255278'
-  retries: 'NOT_PRESENT' → '1'
-
-Offer 165701614 (5 changes):
-  metadata.offer_stats: '10489 просмотров, 1 за сегодня, 1431 уникальный с марта...' → '10490 просмотров, 2 за сегодня, 1432 уникальных с марта...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/165701614' → 'https://cian.ru/rent/flat/165701614'
-  estimation_price: 'NOT_PRESENT' → '69000'
-
-Offer 188857055 (4 changes):
-  metadata.offer_stats: '2051 просмотр, 20 за сегодня, 336 уникальных с марта 20...' → '2053 просмотра, 22 за сегодня, 338 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/188857055' → 'https://cian.ru/rent/flat/188857055'
-
-Offer 236200250 (5 changes):
-  metadata.offer_stats: '4193 просмотра, 5 за сегодня, 234 уникальных с марта 20...' → '4302 просмотра, 4 за сегодня, 316 уникальных с марта 20...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/236200250' → 'https://cian.ru/rent/flat/236200250'
-  estimation_price: 'NOT_PRESENT' → '54000'
-
-Offer 172596396 (5 changes):
-  metadata.offer_stats: '1826 просмотров, 6 за сегодня, 540 уникальных с марта 2...' → '1945 просмотров, 4 за сегодня, 610 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/172596396' → 'https://cian.ru/rent/flat/172596396'
-  estimation_price: 'NOT_PRESENT' → '82000'
-
-Offer 254584239 (5 changes):
-  metadata.offer_stats: '1434 просмотра, 2 за сегодня, 92 уникальных с марта 202...' → '1435 просмотров, 3 за сегодня, 93 уникальных с марта 20...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  geo.full_address: 'Москва, Малый Краснопрудный тупик, 1С1' → 'Москва, Малый Краснопрудный туп., 1С1'
-  url: 'https://www.cian.ru/rent/flat/254584239' → 'https://cian.ru/rent/flat/254584239'
-
-Offer 251230061 (4 changes):
-  metadata.offer_stats: '588 просмотров, 9 за сегодня, 231 уникальный с марта 20...' → '589 просмотров, 10 за сегодня, 232 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЗАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЗАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/251230061' → 'https://cian.ru/rent/flat/251230061'
-
-Offer 225522389 (4 changes):
-  metadata.offer_stats: '2668 просмотров, 66 за сегодня, 807 уникальных с марта ...' → '2671 просмотр, 69 за сегодня, 810 уникальных с марта 20...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'САО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'САО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/225522389' → 'https://cian.ru/rent/flat/225522389'
-
-Offer 199516018 (4 changes):
-  metadata.offer_stats: '3796 просмотров, 25 за сегодня, 474 уникальных с марта ...' → '3797 просмотров, 26 за сегодня, 475 уникальных с марта ...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/199516018' → 'https://cian.ru/rent/flat/199516018'
-
-Offer 219980813 (4 changes):
-  metadata.offer_stats: '2767 просмотров, 4 за сегодня, 399 уникальных с марта 2...' → '2768 просмотров, 5 за сегодня, 400 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/219980813' → 'https://cian.ru/rent/flat/219980813'
-
-Offer 235220712 (4 changes):
-  metadata.offer_stats: '1965 просмотров, 3 за сегодня, 535 уникальных с марта 2...' → '1966 просмотров, 4 за сегодня, 536 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/235220712' → 'https://cian.ru/rent/flat/235220712'
-
-Offer 317420962 (5 changes):
-  metadata.offer_stats: '98 просмотров, 1 за сегодня, 51 уникальный' → '225 просмотров, нет за сегодня, 128 уникальных'
+Offer 318414409 (6 changes):
+  metadata.offer_stats: '1429 просмотров, 33 за сегодня, 882 уникальных' → '1431 просмотр, 35 за сегодня, 884 уникальных'
   metadata.is_unpublished: 'False' → 'True'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/317420962' → 'https://cian.ru/rent/flat/317420962'
-  estimation_price: 'NOT_PRESENT' → '81000'
+  metadata.last_active: '2025-06-26 11:57:00' → '2025-06-27 12:47:00'
+  metadata.unpublished_date: '' → '2025-06-27 12:47:00'
+  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ул. Шаболовк...'
+  url: 'https://www.cian.ru/rent/flat/318414409' → 'https://cian.ru/rent/flat/318414409'
 
-Offer 230147563 (5 changes):
-  metadata.offer_stats: '8322 просмотра, нет за сегодня, 2849 уникальных с марта...' → '8323 просмотра, 1 за сегодня, 2850 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/230147563' → 'https://cian.ru/rent/flat/230147563'
-  retries: '1' → '3'
-
-Offer 245689151 (6 changes):
-  metadata.offer_stats: '1795 просмотров, 2 за сегодня, 588 уникальных с марта 2...' → '1796 просмотров, 3 за сегодня, 589 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮЗАО', 'id': ...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЮЗАО', 'id':...'
-  url: 'https://www.cian.ru/rent/flat/245689151' → 'https://cian.ru/rent/flat/245689151'
-  estimation_price: 'NOT_PRESENT' → '88000'
-  retries: 'NOT_PRESENT' → '1'
-
-Offer 242656875 (4 changes):
-  metadata.offer_stats: '12589 просмотров, 5 за сегодня, 4025 уникальных с марта...' → '12590 просмотров, 6 за сегодня, 4026 уникальных с марта...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/242656875' → 'https://cian.ru/rent/flat/242656875'
-
-Offer 162991899 (6 changes):
-  metadata.offer_stats: '3613 просмотров, 4 за сегодня, 426 уникальных с марта 2...' → '3614 просмотров, 5 за сегодня, 427 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЗАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЗАО', 'id': ...'
-  apartment.Год постройки: 'NOT_PRESENT' → '1964'
-  building.Тип дома: 'Блочный' → 'Панельный'
-  url: 'https://www.cian.ru/rent/flat/162991899' → 'https://cian.ru/rent/flat/162991899'
-
-Offer 256941696 (4 changes):
-  metadata.offer_stats: '2371 просмотр, 14 за сегодня, 194 уникальных с марта 20...' → '2372 просмотра, 15 за сегодня, 195 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/256941696' → 'https://cian.ru/rent/flat/256941696'
-
-Offer 226643997 (7 changes):
-  metadata.offer_stats: '2995 просмотров, 12 за сегодня, 13 уникальных с марта 2...' → '3103 просмотра, 18 за сегодня, 84 уникальных с марта 20...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  rental_terms.Предоплата: 'NOT_PRESENT' → '1'
-  url: 'https://www.cian.ru/rent/flat/226643997' → 'https://cian.ru/rent/flat/226643997'
-  estimation_price: 'NOT_PRESENT' → '68000'
-  retries: 'NOT_PRESENT' → '1'
-
-Offer 233126290 (5 changes):
-  metadata.offer_stats: '6923 просмотра, 42 за сегодня, 1674 уникальных с марта ...' → '6924 просмотра, 43 за сегодня, 1675 уникальных с марта ...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/233126290' → 'https://cian.ru/rent/flat/233126290'
-  estimation_price: 'NOT_PRESENT' → '84000'
-
-Offer 229090255 (4 changes):
-  metadata.offer_stats: '1613 просмотров, 6 за сегодня, 43 уникальных с марта 20...' → '1614 просмотров, 7 за сегодня, 44 уникальных с марта 20...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/229090255' → 'https://cian.ru/rent/flat/229090255'
-
-Offer 235206883 (4 changes):
-  metadata.offer_stats: '4094 просмотра, 23 за сегодня, 781 уникальный с марта 2...' → '4096 просмотров, 25 за сегодня, 783 уникальных с марта ...'
-  metadata.is_unpublished: 'True' → 'False'
-  url: 'https://www.cian.ru/rent/flat/235206883' → 'https://cian.ru/rent/flat/235206883'
-  estimation_price: 'NOT_PRESENT' → '62000'
-
-Offer 213658737 (5 changes):
-  metadata.offer_stats: '3683 просмотра, 15 за сегодня, 262 уникальных с марта 2...' → '3684 просмотра, 16 за сегодня, 263 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮЗАО', 'id': ...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЮЗАО', 'id':...'
-  url: 'https://www.cian.ru/rent/flat/213658737' → 'https://cian.ru/rent/flat/213658737'
-  retries: 'NOT_PRESENT' → '1'
-
-Offer 217862616 (3 changes):
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/217862616' → 'https://cian.ru/rent/flat/217862616'
-
-Offer 219753341 (4 changes):
-  metadata.offer_stats: '5154 просмотра, 23 за сегодня, 1205 уникальных с марта ...' → '5156 просмотров, 25 за сегодня, 1207 уникальных с марта...'
-  metadata.is_unpublished: 'True' → 'False'
-  url: 'https://www.cian.ru/rent/flat/219753341' → 'https://cian.ru/rent/flat/219753341'
-  estimation_price: 'NOT_PRESENT' → '77000'
-
-Offer 191620026 (4 changes):
-  metadata.offer_stats: '9649 просмотров, 7 за сегодня, 1128 уникальных с марта ...' → '9650 просмотров, 8 за сегодня, 1129 уникальных с марта ...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮЗАО', 'id': ...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЮЗАО', 'id':...'
-  url: 'https://www.cian.ru/rent/flat/191620026' → 'https://cian.ru/rent/flat/191620026'
-
-Offer 319013353 (3 changes):
-  metadata.offer_stats: '223 просмотра, 18 за сегодня, 164 уникальных' → '224 просмотра, 19 за сегодня, 165 уникальных'
+Offer 318316892 (5 changes):
   metadata.is_unpublished: 'False' → 'True'
-  url: 'https://www.cian.ru/rent/flat/319013353' → 'https://cian.ru/rent/flat/319013353'
+  metadata.last_active: '2025-06-18 14:04:00' → '2025-06-27 12:50:00'
+  metadata.unpublished_date: '' → '2025-06-27 12:50:00'
+  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮЗАО', 'id': ...' → '[{'text': 'Москва', 'id': None}, {'text': 'просп. 60-ле...'
+  url: 'https://www.cian.ru/rent/flat/318316892' → 'https://cian.ru/rent/flat/318316892'
 
-Offer 191081212 (5 changes):
-  metadata.offer_stats: '1275 просмотров, 3 за сегодня, 133 уникальных с марта 2...' → '1276 просмотров, 4 за сегодня, 134 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/191081212' → 'https://cian.ru/rent/flat/191081212'
-  retries: '2' → '1'
-
-Offer 217352543 (6 changes):
-  metadata.offer_stats: '1189 просмотров, 9 за сегодня, 9 уникальных с марта 202...' → '1504 просмотра, 11 за сегодня, 209 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/217352543' → 'https://cian.ru/rent/flat/217352543'
-  estimation_price: 'NOT_PRESENT' → '111500'
-  retries: 'NOT_PRESENT' → '1'
-
-Offer 253546183 (4 changes):
-  metadata.offer_stats: '3692 просмотра, 22 за сегодня, 1779 уникальных с марта ...' → '3693 просмотра, 23 за сегодня, 1780 уникальных с марта ...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'САО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'САО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/253546183' → 'https://cian.ru/rent/flat/253546183'
-
-Offer 224186630 (5 changes):
-  metadata.offer_stats: '22891 просмотр, 14 за сегодня, 6584 уникальных с марта ...' → '22892 просмотра, 15 за сегодня, 6585 уникальных с марта...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЮАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/224186630' → 'https://cian.ru/rent/flat/224186630'
-  retries: 'NOT_PRESENT' → '1'
-
-Offer 157982744 (5 changes):
-  metadata.offer_stats: '2324 просмотра, 22 за сегодня, 149 уникальных с марта 2...' → '2325 просмотров, 23 за сегодня, 150 уникальных с марта ...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/157982744' → 'https://cian.ru/rent/flat/157982744'
-  estimation_price: 'NOT_PRESENT' → '71000'
-
-Offer 228166483 (4 changes):
-  metadata.offer_stats: '8333 просмотра, 10 за сегодня, 441 уникальный с марта 2...' → '8335 просмотров, 12 за сегодня, 443 уникальных с марта ...'
-  metadata.is_unpublished: 'True' → 'False'
-  url: 'https://www.cian.ru/rent/flat/228166483' → 'https://cian.ru/rent/flat/228166483'
-  retries: '3' → '1'
-
-Offer 205028297 (4 changes):
-  metadata.offer_stats: '2458 просмотров, 1 за сегодня, 64 уникальных с марта 20...' → '2459 просмотров, 2 за сегодня, 65 уникальных с марта 20...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/205028297' → 'https://cian.ru/rent/flat/205028297'
-
-Offer 231321334 (5 changes):
-  metadata.offer_stats: '1040 просмотров, 4 за сегодня, 113 уникальных с марта 2...' → '1041 просмотр, 5 за сегодня, 114 уникальных с марта 202...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЗАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЗАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/231321334' → 'https://cian.ru/rent/flat/231321334'
-  retries: '1' → '2'
-
-Offer 221924563 (5 changes):
-  metadata.offer_stats: '1398 просмотров, 14 за сегодня, 556 уникальных с марта ...' → '1399 просмотров, 15 за сегодня, 557 уникальных с марта ...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/221924563' → 'https://cian.ru/rent/flat/221924563'
-  retries: '2' → '1'
-
-Offer 247360637 (4 changes):
-  metadata.offer_stats: '1579 просмотров, 11 за сегодня, 194 уникальных с марта ...' → '1581 просмотр, 13 за сегодня, 196 уникальных с марта 20...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЮАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/247360637' → 'https://cian.ru/rent/flat/247360637'
-
-Offer 319174713 (18 changes):
-  metadata.last_active: '2025-06-27 12:40:00' → '2025-06-27 12:45:00'
-  metadata.offer_stats: 'NOT_PRESENT' → '4 просмотра, 4 за сегодня, 4 уникальных'
+Offer 275829825 (15 changes):
+  metadata.offer_stats: 'NOT_PRESENT' → '958 просмотров, 1 за сегодня, 328 уникальных с марта 20...'
   metadata.is_unpublished: 'NOT_PRESENT' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  geo.metro_stations: 'NOT_PRESENT' → '[{'name': 'Белорусская', 'walking_time': '6 мин.'}, {'n...'
+  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЮАО', 'id': ...'
+  geo.metro_stations: 'NOT_PRESENT' → '[{'name': 'Ленинский проспект', 'walking_time': '13 мин...'
   rental_terms.Предоплата: 'NOT_PRESENT' → '1'
   rental_terms.Условия проживания: 'NOT_PRESENT' → 'можно с детьми'
-  apartment.Жилая площадь: 'NOT_PRESENT' → '25'
-  apartment.Площадь кухни: 'NOT_PRESENT' → '8'
-  apartment.Планировка: 'NOT_PRESENT' → 'Изолированная'
-  apartment.Санузел: 'NOT_PRESENT' → '1 совмещенный'
-  apartment.Балкон/лоджия: 'NOT_PRESENT' → '1 лоджия'
-  apartment.Вид из окон: 'NOT_PRESENT' → 'Во двор'
-  apartment.Ремонт: 'NOT_PRESENT' → 'Евроремонт'
-  url: 'https://www.cian.ru/rent/flat/319174713' → 'https://cian.ru/rent/flat/319174713'
-  estimation_price: 'NOT_PRESENT' → '94000'
-  building: 'NOT_PRESENT' → '{'Год постройки': '1963', 'Строительная серия': 'II-18'...'
-  features: 'NOT_PRESENT' → '['Холодильник', 'Стиральная машина', 'Кондиционер', 'Те...'
+  apartment.Жилая площадь: 'NOT_PRESENT' → '55'
+  apartment.Санузел: 'NOT_PRESENT' → '1 раздельный'
+  apartment.Вид из окон: 'NOT_PRESENT' → 'На улицу и двор'
+  apartment.Ремонт: 'NOT_PRESENT' → 'Косметический'
+  url: 'https://www.cian.ru/rent/flat/275829825' → 'https://cian.ru/rent/flat/275829825'
+  estimation_price: 'NOT_PRESENT' → '92000'
+  building: 'NOT_PRESENT' → '{'Год постройки': '1934', 'Строительная серия': 'Индиви...'
+  features: 'NOT_PRESENT' → '['Холодильник', 'Стиральная машина', 'Ванна', 'Мебель н...'
+  retries: 'NOT_PRESENT' → '1'
 
-Offer 251333595 (4 changes):
-  metadata.offer_stats: '1561 просмотр, 1 за сегодня, 213 уникальных с марта 202...' → '1562 просмотра, 2 за сегодня, 214 уникальных с марта 20...'
+Offer 317420962 (4 changes):
+  metadata.offer_stats: '225 просмотров, нет за сегодня, 128 уникальных' → '226 просмотров, 1 за сегодня, 129 уникальных'
   metadata.is_unpublished: 'True' → 'False'
   geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/251333595' → 'https://cian.ru/rent/flat/251333595'
+  url: 'https://www.cian.ru/rent/flat/317420962' → 'https://cian.ru/rent/flat/317420962'
 
-Offer 213744103 (4 changes):
-  metadata.offer_stats: '1583 просмотра, 10 за сегодня, 212 уникальных с марта 2...' → '1584 просмотра, 11 за сегодня, 213 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/213744103' → 'https://cian.ru/rent/flat/213744103'
-
-Offer 318897753 (9 changes):
-  metadata.unpublished_date: '' → '2025-06-27 12:40:00'
-  metadata.last_active: '2025-06-26 22:56:00' → '2025-06-27 12:40:00'
-  metadata.offer_stats: '20 просмотров, 20 за сегодня, 20 уникальных' → '890 просмотров, 23 за сегодня, 564 уникальных'
+Offer 318105821 (6 changes):
+  metadata.offer_stats: '2032 просмотра, 78 за сегодня, 1083 уникальных' → '2165 просмотров, 33 за сегодня, 1127 уникальных'
   metadata.is_unpublished: 'False' → 'True'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ул. Серпухов...'
-  apartment.Жилая площадь: '12' → '20'
-  apartment.Площадь кухни: '10' → '12'
-  url: 'https://www.cian.ru/rent/flat/318897753' → 'https://cian.ru/rent/flat/318897753'
-  retries: 'NOT_PRESENT' → '3'
-
-Offer 248542587 (5 changes):
-  metadata.last_active: '2025-06-24 12:18:00' → '2025-01-01 03:00:00'
-  metadata.offer_stats: '2211 просмотров, 5 за сегодня, 351 уникальный с марта 2...' → '2212 просмотров, 6 за сегодня, 352 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/248542587' → 'https://cian.ru/rent/flat/248542587'
-
-Offer 318826327 (6 changes):
-  metadata.unpublished_date: '' → '2025-06-27 12:40:00'
-  metadata.last_active: '2025-06-26 12:41:00' → '2025-06-27 12:40:00'
-  metadata.offer_stats: '209 просмотров, 78 за сегодня, 156 уникальных' → '446 просмотров, 4 за сегодня, 277 уникальных'
-  metadata.is_unpublished: 'False' → 'True'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЮАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ул. Серпухов...'
-  url: 'https://www.cian.ru/rent/flat/318826327' → 'https://cian.ru/rent/flat/318826327'
-
-Offer 239254274 (4 changes):
-  metadata.offer_stats: '3501 просмотр, 5 за сегодня, 312 уникальных с марта 202...' → '3502 просмотра, 6 за сегодня, 313 уникальных с марта 20...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/239254274' → 'https://cian.ru/rent/flat/239254274'
-
-Offer 227160653 (4 changes):
-  metadata.offer_stats: '3704 просмотра, 30 за сегодня, 546 уникальных с марта 2...' → '3705 просмотров, 31 за сегодня, 547 уникальных с марта ...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/227160653' → 'https://cian.ru/rent/flat/227160653'
-
-Offer 202716639 (4 changes):
-  metadata.offer_stats: '2742 просмотра, 13 за сегодня, 601 уникальный с марта 2...' → '2743 просмотра, 14 за сегодня, 602 уникальных с марта 2...'
-  metadata.is_unpublished: 'True' → 'False'
-  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'ЦАО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'ЦАО', 'id': ...'
-  url: 'https://www.cian.ru/rent/flat/202716639' → 'https://cian.ru/rent/flat/202716639'
-Total offers with changes: 47 out of 47
-Total field changes detected: 232
+  metadata.last_active: '2025-06-26 13:36:00' → '2025-06-27 12:47:00'
+  metadata.unpublished_date: '' → '2025-06-27 12:47:00'
+  geo.address_items: '[{'text': 'Москва', 'id': '1'}, {'text': 'САО', 'id': '...' → '[{'text': 'Москва', 'id': None}, {'text': 'Хорошевское ...'
+  url: 'https://www.cian.ru/rent/flat/318105821' → 'https://cian.ru/rent/flat/318105821'
+Total offers with changes: 5 out of 5
+Total field changes detected: 36
 
 Field change breakdown:
-  metadata.is_unpublished: 47 changes
-  url: 47 changes
-  metadata.offer_stats: 46 changes
-  geo.address_items: 43 changes
-  retries: 13 changes
-  estimation_price: 12 changes
-  metadata.last_active: 4 changes
-  rental_terms.Предоплата: 2 changes
-  apartment.Жилая площадь: 2 changes
-  apartment.Площадь кухни: 2 changes
-  metadata.unpublished_date: 2 changes
-  geo.full_address: 1 changes
-  apartment.Год постройки: 1 changes
-  building.Тип дома: 1 changes
+  metadata.is_unpublished: 5 changes
+  geo.address_items: 5 changes
+  url: 5 changes
+  metadata.offer_stats: 4 changes
+  metadata.last_active: 3 changes
+  metadata.unpublished_date: 3 changes
   geo.metro_stations: 1 changes
+  rental_terms.Предоплата: 1 changes
   rental_terms.Условия проживания: 1 changes
-  apartment.Планировка: 1 changes
+  apartment.Жилая площадь: 1 changes
   apartment.Санузел: 1 changes
-  apartment.Балкон/лоджия: 1 changes
   apartment.Вид из окон: 1 changes
   apartment.Ремонт: 1 changes
+  estimation_price: 1 changes
   building: 1 changes
   features: 1 changes
+  retries: 1 changes
 
 Most frequently changed fields:
-  metadata.is_unpublished: 47 changes (100.0% of offers)
-  url: 47 changes (100.0% of offers)
-  metadata.offer_stats: 46 changes (97.9% of offers)
-  geo.address_items: 43 changes (91.5% of offers)
-  retries: 13 changes (27.7% of offers)
+  metadata.is_unpublished: 5 changes (100.0% of offers)
+  geo.address_items: 5 changes (100.0% of offers)
+  url: 5 changes (100.0% of offers)
+  metadata.offer_stats: 4 changes (80.0% of offers)
+  metadata.last_active: 3 changes (60.0% of offers)
