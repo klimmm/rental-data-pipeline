@@ -1,0 +1,17 @@
+# GitHub Actions Data Pipeline Requirements
+# Minimal dependencies based on actual imports in the codebase
+
+# Core web scraping
+playwright>=1.40.0        # Browser automation (scraper/async_scraper.py)
+requests>=2.31.0          # HTTP requests (scraper/distance.py)
+
+# Configuration and data handling  
+PyYAML>=6.0               # YAML config files (data_process_utils/helpers.py)
+
+# Performance monitoring
+psutil>=5.9.0             # Memory tracking (scraper/performance_tracker.py)
+
+# Note: All other imports are Python standard library modules:
+# - asyncio, json, os, re, time, logging, math, csv
+# - datetime, typing, dataclasses, concurrent.futures
+# - urllib.parse, random

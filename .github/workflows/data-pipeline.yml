@@ -1,11 +1,6 @@
 name: Data Pipeline
 
 on:
-  schedule:
-    # Run every 6 hours for update/wide (00:00, 06:00, 12:00, 18:00)
-    - cron: '0 */6 * * *'
-    # Run daily at 3 AM for revise/wide (replacing the 00:00 update)
-    - cron: '0 3 * * *'
   workflow_dispatch:
     inputs:
       mode:
@@ -30,26 +25,15 @@ env:
   PYTHON_VERSION: '3.11'
 
 jobs:
-  data-scraping:
+  test-pipeline:
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ github.event.schedule == '0 3 * * *' && 120 || 60 }}  # 2 hours for revise, 1 hour for update
+    timeout-minutes: 10
     
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        sparse-checkout: |
-          *.py
-          .github/
-          scraper/
-          data_process_utils/
-          search_configs/
-          data/cian_data/*.json
-          data/cian_data/*.csv
-          !data/cian_data/backups/
-          !data/images/
-        sparse-checkout-cone-mode: false
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -58,228 +42,43 @@ jobs:
         cache: 'pip'
         cache-dependency-path: '.github/requirements-workflow-data-pipeline.txt'
 
-    - name: Cache Playwright browsers
-      uses: actions/cache@v4
-      with:
-        path: ~/.cache/ms-playwright
-        key: playwright-${{ runner.os }}-${{ hashFiles('.github/requirements-workflow-data-pipeline.txt') }}
-        restore-keys: |
-          playwright-${{ runner.os }}-
-
-    - name: Install system dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y curl wget
-        
-    - name: Install Python dependencies and browsers
+    - name: Install Python dependencies
       run: |
         pip install -r .github/requirements-workflow-data-pipeline.txt
-        playwright install chromium --with-deps
 
-    - name: Set up git configuration
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-    - name: Install SingBox (VPN client)
-      run: |
-        chmod +x .github/install-singbox.sh
-        ./.github/install-singbox.sh
-
-    - name: Run data scraping pipeline
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # Add any other environment variables needed for VPN/proxies
-        SCRAPER_MODE: ${{ inputs.mode || (github.event.schedule == '0 3 * * *' && 'revise') || vars.SCRAPER_MODE || 'update' }}
-        SCRAPER_SEARCH: ${{ inputs.search || vars.SCRAPER_SEARCH || 'wide' }}
+    - name: Test imports
       run: |
         python -c "
-        import asyncio
         import sys
-        import os
         sys.path.append('.')
-        from parse_data_cian import ScraperPipeline
-        
-        # Get mode and search from environment variables
-        mode = os.environ.get('SCRAPER_MODE', 'update')
-        search = os.environ.get('SCRAPER_SEARCH', 'wide')
-        
-        print(f'🔧 Running in mode: {mode}, search: {search}')
-        
-        # Set parameters based on mode (matching scheduler.py logic)
-        if mode == 'new':
-            update_current_search_listings = True
-            check_if_unpublished = False
-            check_missing_estimations = False
-        elif mode == 'update':
-            update_current_search_listings = False
-            check_if_unpublished = True
-            check_missing_estimations = False
-        elif mode == 'revise':
-            update_current_search_listings = False
-            check_if_unpublished = True
-            check_missing_estimations = True
-        else:
-            print(f'❌ Unknown mode: {mode}')
+        try:
+            from parse_data import ScraperPipeline
+            print('✅ Successfully imported ScraperPipeline')
+        except ImportError as e:
+            print(f'❌ Import failed: {e}')
             sys.exit(1)
-        
-        # Set search config path
-        if search == 'narrow':
-            search_config_path = 'search_configs/search_narrow.yaml'
-        elif search == 'wide':
-            search_config_path = 'search_configs/search_wide.yaml'
-        else:
-            print(f'❌ Unknown search: {search}')
-            sys.exit(1)
-        
-        async def main():
-            try:
-                pipeline = ScraperPipeline(
-                    data_dir='data/cian_data',
-                    use_proxies=False,
-                    search_config_path=search_config_path,
-                    check_missing_estimations=check_missing_estimations,
-                    check_if_unpublished=check_if_unpublished,
-                    update_current_search_listings=update_current_search_listings
-                )
-                await pipeline.run()
-                print('✅ Scraper pipeline completed successfully')
-                return True
-            except Exception as e:
-                print(f'❌ Scraper pipeline failed: {e}')
-                import traceback
-                traceback.print_exc()
-                return False
-        
-        success = asyncio.run(main())
-        sys.exit(0 if success else 1)
         "
 
-    - name: Check for data changes
-      id: changes
+    - name: List directory structure
       run: |
-        git add data/cian_data/
-        if git diff --cached --quiet; then
-          echo "has_changes=false" >> $GITHUB_OUTPUT
-          echo "ℹ️ No changes to commit"
-        else
-          echo "has_changes=true" >> $GITHUB_OUTPUT
-          echo "📊 Changes detected:"
-          git diff --cached --name-status
-        fi
-
-    - name: Commit and push changes
-      if: steps.changes.outputs.has_changes == 'true'
-      run: |
-        # Get current timestamp
-        timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-        
-        # Determine which schedule triggered this
-        if [ "${{ github.event.schedule }}" = "0 3 * * *" ]; then
-          schedule_type="(revise/wide daily)"
-        elif [ "${{ github.event.schedule }}" = "0 */6 * * *" ]; then
-          schedule_type="(update/wide 6-hourly)"
-        else
-          schedule_type="(manual trigger)"
-        fi
-        
-        # Create commit message
-        commit_msg="Auto-update data on $timestamp $schedule_type
-
-        🤖 Generated with [Claude Code](https://claude.ai/code)
-
-        Co-Authored-By: Claude <noreply@anthropic.com>"
-        
-        # Commit changes
-        git commit -m "$commit_msg"
-        
-        # Handle potential remote changes
-        echo "Fetching latest changes..."
-        git fetch origin main
-        
-        # Stash any unstaged changes before rebase
-        if ! git diff --quiet; then
-          echo "Stashing unstaged changes..."
-          git stash push -m "WIP: unstaged changes before rebase"
-          stashed=true
-        else
-          stashed=false
-        fi
-        
-        # Check if we need to rebase
-        if ! git merge-base --is-ancestor origin/main HEAD; then
-          echo "Remote has changes, rebasing..."
-          git rebase origin/main || {
-            echo "Rebase conflicts detected, using merge strategy instead..."
-            git rebase --abort
-            git merge origin/main -X ours -m "Merge remote changes (keeping local data updates)"
-          }
-        fi
-        
-        # Restore stashed changes if any
-        if [ "$stashed" = "true" ]; then
-          echo "Restoring stashed changes..."
-          git stash pop || echo "No changes to restore"
-        fi
-        
-        # Push with retry logic
-        max_retries=3
-        for i in $(seq 1 $max_retries); do
-          if git push origin main; then
-            echo "✅ Changes pushed successfully"
-            break
-          else
-            if [ $i -eq $max_retries ]; then
-              echo "❌ Failed to push after $max_retries attempts"
-              exit 1
-            fi
-            echo "⚠️ Push failed, retrying in 5 seconds... (attempt $i/$max_retries)"
-            sleep 5
-          fi
-        done
-
-    - name: Trigger image processing workflow
-      if: steps.changes.outputs.has_changes == 'true' && env.SCRAPER_SEARCH == 'wide' && env.SCRAPER_MODE == 'update'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        # Wait a moment for the data to be available
-        sleep 10
-        
-        # Trigger the image processing workflow in image-utils submodule
-        if gh workflow run process-images.yml --repo klimmm/image-utils; then
-          echo "✅ Image processing workflow triggered successfully"
-        else
-          echo "⚠️ Could not trigger image processing workflow"
-          # Don't fail the job - this is not critical
-        fi
-
-    - name: Upload logs on failure
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: pipeline-logs-${{ github.run_number }}
-        path: |
-          *.log
-          logs/
-        retention-days: 7
+        echo "📁 Repository structure:"
+        find . -type f -name "*.py" | head -20
+        echo "📁 Search configs:"
+        ls -la search_configs/ || echo "No search_configs directory"
+        echo "📁 Data process utils:"
+        ls -la data_process_utils/ || echo "No data_process_utils directory"
 
   health-check:
     runs-on: ubuntu-latest
-    needs: data-scraping
+    needs: test-pipeline
     if: always()
     
     steps:
     - name: Report pipeline status
       run: |
-        if [ "${{ needs.data-scraping.result }}" = "success" ]; then
-          echo "✅ Data pipeline completed successfully"
+        if [ "${{ needs.test-pipeline.result }}" = "success" ]; then
+          echo "✅ Data pipeline test completed successfully"
         else
-          echo "❌ Data pipeline failed"
-          echo "Job result: ${{ needs.data-scraping.result }}"
+          echo "❌ Data pipeline test failed"
+          echo "Job result: ${{ needs.test-pipeline.result }}"
         fi
-        
-        # You could add additional health checks here:
-        # - Check data freshness
-        # - Validate data integrity
-        # - Send notifications to external services
