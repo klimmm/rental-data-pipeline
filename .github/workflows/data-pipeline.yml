@@ -47,7 +47,6 @@ jobs:
         repository: klimmm/cian-tracker
         token: ${{ secrets.PAT_TOKEN }}
         path: cian-tracker
-        submodules: true
         sparse-checkout: |
           data/cian_data
         sparse-checkout-cone-mode: false
