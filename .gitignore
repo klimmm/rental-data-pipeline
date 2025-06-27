@@ -1,1 +1,3 @@
 vpn_manager
+.ipynb_checkpoints/
+*.pyc
