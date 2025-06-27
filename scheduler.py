@@ -11,7 +11,7 @@ from parse_data import ScraperPipeline
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    #handlers=[logging.FileHandler("scheduler.log"), logging.StreamHandler()],
+    # handlers=[logging.FileHandler("scheduler.log"), logging.StreamHandler()],
 )
 logger = logging.getLogger("scheduler")
 
@@ -21,9 +21,9 @@ class PipelineOrchestrator:
 
     def __init__(self, mode="update", search="wide"):
         self.logger = logging.getLogger("scheduler.orchestrator")
-        self.data_dir = "../data/cian_data"
+        self.data_dir = "/Users/klim/local-storage/app/data/cian_data"
         self.use_proxies = True
-        self.git_repo_dir = "."
+        self.git_repo_dir = "/Users/klim/local-storage/app"
         self.logger.info(f"mode={mode}, search={search}")
 
         # Set parameters based on mode
@@ -90,24 +90,8 @@ class PipelineOrchestrator:
                 raise
             return e
 
-    def _run_git_command_in_data_dir(self, command, check=True):
-        """Run a git command in the data directory (current working directory)"""
-        try:
-            return subprocess.run(
-                command,
-                capture_output=True,
-                text=True,
-                check=check,
-            )
-        except subprocess.CalledProcessError as e:
-            self.logger.error(f"Git command failed: {command[0]} {command[1]}")
-            self.logger.error(f"Error: {e.stderr}")
-            if check:
-                raise
-            return e
-
     def git_commit_and_push(self):
-        """Commit and push data changes to git"""
+        """Commit and push data changes to git repository"""
         self.logger.info("Starting git commit and push...")
 
         # Check if data directory exists
@@ -115,68 +99,57 @@ class PipelineOrchestrator:
             self.logger.warning(f"Data directory {self.data_dir} does not exist")
             return False
 
-        # Save current directory and change to data directory for git operations
-        original_dir = os.getcwd()
-        try:
-            data_abs_path = os.path.abspath(self.data_dir)
-            os.chdir(data_abs_path)
-            self.logger.info(f"Changed to data directory: {data_abs_path}")
+        # Add data files from git repo directory
+        self._run_git_command(["git", "add", self.data_dir])
 
-            # Add all files in current directory (data directory)
-            self._run_git_command_in_data_dir(["git", "add", "."])
+        # Check if there are changes to commit
+        result = self._run_git_command(
+            ["git", "diff", "--cached", "--quiet"], check=False
+        )
+        if result.returncode == 0:
+            self.logger.info("ℹ️ No changes to commit")
+            return True
 
-            # Check if there are changes to commit
-            result = self._run_git_command_in_data_dir(
-                ["git", "diff", "--cached", "--quiet"], check=False
-            )
-            if result.returncode == 0:
-                self.logger.info("ℹ️ No changes to commit")
-                return True
+        # Show changes
+        result = self._run_git_command(["git", "diff", "--cached", "--name-status"])
+        self.logger.info(f"Changes to be committed:\n{result.stdout}")
 
-            # Show changes
-            result = self._run_git_command_in_data_dir(["git", "diff", "--cached", "--name-status"])
-            self.logger.info(f"Changes to be committed:\n{result.stdout}")
+        # Commit
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        commit_message = f"Auto-update data on {timestamp}"
+        result = self._run_git_command(["git", "commit", "-m", commit_message])
 
-            # Commit
-            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            commit_message = f"Auto-update data on {timestamp}"
-            result = self._run_git_command_in_data_dir(["git", "commit", "-m", commit_message])
+        if result.returncode != 0:
+            self.logger.error(f"❌ Git commit failed: {result.stderr}")
+            return False
 
-            if result.returncode != 0:
-                self.logger.error(f"❌ Git commit failed: {result.stderr}")
-                return False
-
-            # Check and handle remote changes before pushing
-            return self._sync_and_push()
-        
-        finally:
-            # Always return to original directory
-            os.chdir(original_dir)
+        # Check and handle remote changes before pushing
+        return self._sync_and_push()
 
     def _sync_and_push(self, max_network_retries=3):
         """Sync with remote and push changes - matching GitHub Actions workflow strategy"""
 
         # Handle potential remote changes (matching workflow logic)
         self.logger.info("Fetching latest changes...")
-        self._run_git_command_in_data_dir(["git", "fetch", "origin", "main"])
+        self._run_git_command(["git", "fetch", "origin", "main"])
 
         # Stash any unstaged changes before rebase
-        stash_result = self._run_git_command_in_data_dir(["git", "diff", "--quiet"], check=False)
+        stash_result = self._run_git_command(["git", "diff", "--quiet"], check=False)
         stashed = False
         if stash_result.returncode != 0:
             self.logger.info("Stashing unstaged changes...")
-            self._run_git_command_in_data_dir(
+            self._run_git_command(
                 ["git", "stash", "push", "-m", "WIP: unstaged changes before rebase"]
             )
             stashed = True
 
         # Check if we need to rebase
-        ancestor_check = self._run_git_command_in_data_dir(
+        ancestor_check = self._run_git_command(
             ["git", "merge-base", "--is-ancestor", "origin/main", "HEAD"], check=False
         )
         if ancestor_check.returncode != 0:
             self.logger.info("Remote has changes, rebasing...")
-            rebase_result = self._run_git_command_in_data_dir(
+            rebase_result = self._run_git_command(
                 ["git", "rebase", "origin/main"], check=False
             )
 
@@ -184,8 +157,8 @@ class PipelineOrchestrator:
                 self.logger.info(
                     "Rebase conflicts detected, using merge strategy instead..."
                 )
-                self._run_git_command_in_data_dir(["git", "rebase", "--abort"], check=False)
-                self._run_git_command_in_data_dir(
+                self._run_git_command(["git", "rebase", "--abort"], check=False)
+                self._run_git_command(
                     [
                         "git",
                         "merge",
@@ -200,7 +173,7 @@ class PipelineOrchestrator:
         # Restore stashed changes if any
         if stashed:
             self.logger.info("Restoring stashed changes...")
-            pop_result = self._run_git_command_in_data_dir(["git", "stash", "pop"], check=False)
+            pop_result = self._run_git_command(["git", "stash", "pop"], check=False)
             if pop_result.returncode != 0:
                 self.logger.info("No changes to restore")
 
@@ -210,7 +183,7 @@ class PipelineOrchestrator:
                 self.logger.info(
                     f"Pushing changes to remote (attempt {attempt + 1}/{max_network_retries})..."
                 )
-                self._run_git_command_in_data_dir(["git", "push"])
+                self._run_git_command(["git", "push"])
                 self.logger.info("✅ Changes pushed successfully")
                 return True
             except subprocess.CalledProcessError as e:

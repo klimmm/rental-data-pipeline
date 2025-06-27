@@ -16,7 +16,7 @@ from data_process_utils.json_to_csv import convert_json_to_csv
 from data_process_utils.transform import transform_listings_data
 from data_process_utils.normalize_data import normalize_listings
 from data_process_utils.merge_data import merge_data
-from data_process_utils.validation import validate_merge
+# from data_process_utils.validation import validate_merge
 from scraper.scraper_config import AsyncConfig
 from scraper.async_scraper import AsyncScraper
 from scraper.distance import calculate_and_update_distances
@@ -44,13 +44,13 @@ class ScraperPipeline:
         check_missing_estimations,
         check_if_unpublished,
         update_current_search_listings,
+        should_scrape_new=True
     ):
 
         self.check_missing_estimations = check_missing_estimations
         self.check_if_unpublished = check_if_unpublished
         self.update_current_search_listings = update_current_search_listings
-        self.should_scrape_new = True
-        self.should_hadle_errors = True
+        self.should_scrape_new = should_scrape_new
         self.json_file_path = os.path.join(data_dir, "merged_listings.json")
         self.json_distance = os.path.join(data_dir, "merged_listings_distance.json")
         self.search_config_path = search_config_path
