@@ -43,7 +43,7 @@ jobs:
 
     - name: Checkout main data repository
       run: |
-        git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/klimmm/cian-tracker.git cian-tracker
+        git clone https://x-access-token:${{ secrets.PAT_TOKEN }}@github.com/klimmm/cian-tracker.git cian-tracker
         cd cian-tracker
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -94,7 +94,7 @@ jobs:
 
     - name: Run data scraping pipeline
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         # Add any other environment variables needed for VPN/proxies
         SCRAPER_MODE: ${{ inputs.mode || (github.event.schedule == '0 3 * * *' && 'revise') || vars.SCRAPER_MODE || 'update' }}
         SCRAPER_SEARCH: ${{ inputs.search || vars.SCRAPER_SEARCH || 'wide' }}
@@ -251,7 +251,7 @@ jobs:
     - name: Trigger image processing workflow
       if: steps.changes.outputs.has_changes == 'true' && env.SCRAPER_SEARCH == 'wide' && env.SCRAPER_MODE == 'update'
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
         # Wait a moment for the data to be available
         sleep 10
