@@ -2,9 +2,9 @@ name: Data Pipeline
 
 on:
   schedule:
-    # Run every 6 hours for update/wide (00:00, 06:00, 12:00, 18:00)
-    - cron: '0 */6 * * *'
-    # Run daily at 3 AM for revise/wide (replacing the 00:00 update)
+    # Run every hour for update/wide
+    - cron: '0 * * * *'
+    # Run daily at 3 AM for revise/wide (replacing the hourly update)
     - cron: '0 3 * * *'
   workflow_dispatch:
     inputs:
