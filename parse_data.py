@@ -163,9 +163,9 @@ class ScraperPipeline:
     ):
         """Merge and validate listings data."""
         normalize_listings(new_listings)
-        original_data = copy.deepcopy(db_listings)
+        # original_data = copy.deepcopy(db_listings)
         merged_data = merge_data(db_listings, new_listings)
-        validate_merge(original_data, new_listings, merged_data, merge_label)
+        # validate_merge(original_data, new_listings, merged_data, merge_label)
         self._save_json(file_path, merged_data)
 
         return merged_data
