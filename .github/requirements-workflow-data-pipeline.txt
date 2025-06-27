@@ -1,9 +1,10 @@
 # GitHub Actions Data Pipeline Requirements
-# Minimal dependencies based on actual imports in the codebase
+# Dependencies based on actual imports in the codebase
 
 # Core web scraping
 playwright>=1.40.0        # Browser automation (scraper/async_scraper.py)
 requests>=2.31.0          # HTTP requests (scraper/distance.py)
+aiohttp>=3.8.0           # Async HTTP requests (scraper/async_http_processor.py)
 
 # Configuration and data handling  
 PyYAML>=6.0               # YAML config files (data_process_utils/helpers.py)
