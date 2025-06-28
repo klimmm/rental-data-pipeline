@@ -11,14 +11,14 @@ logger = logging.getLogger(__name__)
 class ProgressTracker:
     def __init__(self, total_requests, track_memory=True):
         self.total_requests = total_requests
-        self.unique_processed = set()  # Track unique requests processed
-        self.processed_count = 0  # Total processing attempts (including retries)
+        self.unique_processed = set()
+        self.processed_count = 0
         self.successful_requests = 0
         self.failed_requests = 0
         self.retried_requests = 0
         self.lock = asyncio.Lock()
         self.start_time = time.time()
-        
+
         # Memory tracking
         self.track_memory = track_memory
         self.process_mem_current = 0
@@ -26,10 +26,11 @@ class ProgressTracker:
         self.system_mem_current = 0
         self.system_mem_percent = 0
         self.tracking_task = None
-        
+
         if track_memory:
             try:
                 import psutil
+
                 self.process = psutil.Process(os.getpid())
                 self.tracking_task = asyncio.create_task(self._memory_tracking_loop())
             except (ImportError, Exception) as e:
@@ -39,32 +40,53 @@ class ProgressTracker:
             # Print header
             logger.info("\n{:-^100}".format(" SCRAPING PROGRESS "))
             if self.track_memory:
-                logger.info("{:<4}|{:<7}|{:<7}|{:<7}|{:<7}|{:<10}|{:<9}|{:<12}".format(
-                    "%", "Proc", "Succ", "Fail", "Retry", "items/min", 
-                    "Proc MB", "Sys GB (%)"
-                ))
+                logger.info(
+                    "{:<4}|{:<7}|{:<7}|{:<7}|{:<7}|{:<10}|{:<9}|{:<12}".format(
+                        "%",
+                        "Proc",
+                        "Succ",
+                        "Fail",
+                        "Retry",
+                        "items/sec",
+                        "Proc GB",
+                        "Sys GB (%)",
+                    )
+                )
             else:
-                logger.info("{:<4}|{:<7}|{:<7}|{:<7}|{:<7}|{:<10}".format(
-                    "%", "Proc", "Succ", "Fail", "Retry", "items/min"
-                ))
+                logger.info(
+                    "{:<4}|{:<7}|{:<7}|{:<7}|{:<7}|{:<10}".format(
+                        "%", "Proc", "Succ", "Fail", "Retry", "items/sec"
+                    )
+                )
             logger.info("-" * 100 if self.track_memory else "-" * 45)
 
     async def _memory_tracking_loop(self, interval=2):
         """Background task to monitor memory usage"""
         try:
             import psutil
+
             while True:
-                # Process memory
-                process_info = self.process.memory_info()
-                self.process_mem_current = process_info.rss / (1024 * 1024)  # MB
+                # Calculate total memory including child processes
+                total_memory = self.process.memory_info().rss
+                try:
+                    children = self.process.children(recursive=True)
+                    for child in children:
+                        try:
+                            total_memory += child.memory_info().rss
+                        except (psutil.NoSuchProcess, psutil.AccessDenied):
+                            pass  # Child process may have terminated
+                except (psutil.NoSuchProcess, psutil.AccessDenied):
+                    pass
+
+                self.process_mem_current = total_memory / (1024**3)  # GB
                 if self.process_mem_current > self.process_mem_peak:
                     self.process_mem_peak = self.process_mem_current
-                
+
                 # System memory
                 system_info = psutil.virtual_memory()
                 self.system_mem_current = system_info.used / (1024**3)  # GB
                 self.system_mem_percent = system_info.percent
-                
+
                 # Wait for next interval
                 await asyncio.sleep(interval)
         except Exception as e:
@@ -74,7 +96,7 @@ class ProgressTracker:
         async with self.lock:
             self.processed_count += 1
             # Use request_id or URL as hashable identifier for unique tracking
-            request_id = request.get('request_id') or request.get('url', str(request))
+            request_id = request.get("request_id") or request.get("url", str(request))
             self.unique_processed.add(request_id)  # Add to set of unique requests
 
             if success:
@@ -92,7 +114,7 @@ class ProgressTracker:
             # Print progress with memory info if enabled
             if self.track_memory:
                 logger.info(
-                    "{:4.1f}|{:<7}|{:<7}|{:<7}|{:<7}|{:<10.2f}|{:<9.1f}|{:<5.1f} ({:4.1f}%)".format(
+                    "{:4.1f}|{:<7}|{:<7}|{:<7}|{:<7}|{:<10.2f}|{:<9.2f}|{:<5.1f} ({:4.1f}%)".format(
                         min(percent, 100.0),  # Cap at 100%
                         self.processed_count,
                         self.successful_requests,
@@ -101,7 +123,7 @@ class ProgressTracker:
                         speed,
                         self.process_mem_current,
                         self.system_mem_current,
-                        self.system_mem_percent
+                        self.system_mem_percent,
                     )
                 )
             else:
@@ -115,22 +137,24 @@ class ProgressTracker:
                         speed,
                     )
                 )
-            
+
             # Log to file
             logging.getLogger("performance").debug(
-                json.dumps({
-                    "timestamp": datetime.now().isoformat(),
-                    "percent": min(percent, 100.0),
-                    "processed": self.processed_count,
-                    "successful": self.successful_requests,
-                    "failed": self.failed_requests,
-                    "retries": self.retried_requests,
-                    "speed": speed,
-                    "process_mem_mb": self.process_mem_current,
-                    "process_mem_peak_mb": self.process_mem_peak,
-                    "system_mem_gb": self.system_mem_current,
-                    "system_mem_percent": self.system_mem_percent
-                })
+                json.dumps(
+                    {
+                        "timestamp": datetime.now().isoformat(),
+                        "percent": min(percent, 100.0),
+                        "processed": self.processed_count,
+                        "successful": self.successful_requests,
+                        "failed": self.failed_requests,
+                        "retries": self.retried_requests,
+                        "speed": speed,
+                        "process_mem_mb": self.process_mem_current,
+                        "process_mem_peak_mb": self.process_mem_peak,
+                        "system_mem_gb": self.system_mem_current,
+                        "system_mem_percent": self.system_mem_percent,
+                    }
+                )
             )
 
     def get_summary(self):
@@ -143,12 +167,12 @@ class ProgressTracker:
             "failed": self.failed_requests,
             "retries": self.retried_requests,
             "elapsed_seconds": elapsed,
-            "speed": (self.processed_count / elapsed) * 60 if elapsed > 0 else 0,
+            "speed": (self.processed_count / elapsed) if elapsed > 0 else 0,
             "process_mem_peak_mb": self.process_mem_peak,
             "system_mem_gb": self.system_mem_current,
-            "system_mem_percent": self.system_mem_percent
+            "system_mem_percent": self.system_mem_percent,
         }
-        
+
     async def stop(self):
         """Stop the memory tracking task"""
         if self.tracking_task:
@@ -157,21 +181,29 @@ class ProgressTracker:
                 await self.tracking_task
             except asyncio.CancelledError:
                 pass
-            
+
         # Print final summary
         logger.info("\n{:-^120}".format(" SCRAPING SUMMARY "))
         logger.info(f"Total requests: {self.total_requests}")
-        logger.info(f"Successful: {self.successful_requests} ({self.successful_requests/self.total_requests*100:.1f}%)")
-        logger.info(f"Failed: {self.failed_requests} ({self.failed_requests/self.total_requests*100:.1f}%)")
+        logger.info(
+            f"Successful: {self.successful_requests} ({self.successful_requests/self.total_requests*100:.1f}%)"
+        )
+        logger.info(
+            f"Failed: {self.failed_requests} ({self.failed_requests/self.total_requests*100:.1f}%)"
+        )
         logger.info(f"Retries: {self.retried_requests}")
-        
+
         elapsed = time.time() - self.start_time
         logger.info(f"Total time: {elapsed:.2f} seconds")
-        logger.info(f"Average speed: {(self.processed_count / elapsed) * 60 if elapsed > 0 else 0:.2f} requests/minute")
-        
+        logger.info(
+            f"Average speed: {(self.processed_count / elapsed) * 60 if elapsed > 0 else 0:.2f} requests/minute"
+        )
+
         if self.track_memory:
-            logger.info(f"Peak process memory: {self.process_mem_peak:.2f} MB")
-            logger.info(f"Final system memory: {self.system_mem_current:.2f} GB ({self.system_mem_percent:.1f}%)")
+            logger.info(f"Peak process memory: {self.process_mem_peak:.2f} GB")
+            logger.info(
+                f"Final system memory: {self.system_mem_current:.2f} GB ({self.system_mem_percent:.1f}%)"
+            )
 
 
 def performance_tracker(func):
@@ -186,7 +218,7 @@ def performance_tracker(func):
             # For async_scraper.py compatibility
             url = task.get("url", "unknown")
             request = {"url": url}
-        
+
         retry_count = task["retries"]
 
         start_time = time.time()
@@ -218,7 +250,9 @@ def performance_tracker(func):
 
             # Update progress tracker for exceptions too
             if hasattr(self, "progress_tracker"):
-                await self.progress_tracker.update(request=request, success=False, retry=False)
+                await self.progress_tracker.update(
+                    request=request, success=False, retry=False
+                )
 
             raise
 
@@ -227,10 +261,11 @@ def performance_tracker(func):
             duration = time.time() - start_time
             # Works for both browser and session objects
             worker_id = getattr(resource, "_worker_id", "unknown")
-            
+
             # Handle different proxy attribute names
-            proxy_info = getattr(resource, "_proxy_info", 
-                               getattr(resource, "_proxy_name", "unknown"))
+            proxy_info = getattr(
+                resource, "_proxy_info", getattr(resource, "_proxy_name", "unknown")
+            )
 
             logging.getLogger("performance").debug(
                 json.dumps(

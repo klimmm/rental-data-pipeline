@@ -141,8 +141,6 @@ async function extractCardData() {
                 }
             }
             
-            // Metro station will be extracted from geoLabels
-            
             // Extract geo information
             let fullAddress = null;
             let addressItems = [];

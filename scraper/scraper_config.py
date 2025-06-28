@@ -7,13 +7,12 @@ class AsyncConfig:
     """Configuration for AsyncHttpProcessor adapted from AsyncScraperConfig"""
 
     # Concurrency settings (direct reuse)
-    max_concurrent: int = 2
-    max_requests_per_session: int = 20
-    max_pages_per_browser: int = 10
+    max_concurrent: int = 3
+    max_tasks_per_client: int = 20  # Unified limit for browsers and sessions
     max_retries: int = 5
     use_proxies: bool = True
 
-    timeout: int = 30
+    timeout: int = 20
 
     follow_redirects: bool = True
     verify_ssl: bool = True
@@ -54,6 +53,8 @@ class AsyncConfig:
     )
 
     accept_language: str = "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7"
+    default_user_agent: str = "PythonGeocoder/1.0"  # User agent when no proxy is used
+    default_accept_language: str = "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7"  # Accept-Language when no proxy is used
     proxy_accept_languages = {
         "none": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
         "italy": "it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7",
