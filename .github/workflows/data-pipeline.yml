@@ -8,15 +8,31 @@ on:
     - cron: '0 3 * * *'
   workflow_dispatch:
     inputs:
-      mode:
-        description: 'Scraper mode'
+      update_current_search_listings:
+        description: 'Update all current search listings'
         required: false
-        default: 'update'
-        type: choice
-        options:
-          - new
-          - update
-          - revise
+        default: false
+        type: boolean
+      check_if_unpublished:
+        description: 'Check if listings are unpublished'
+        required: false
+        default: true
+        type: boolean
+      check_missing_estimations:
+        description: 'Check listings with missing price estimations'
+        required: false
+        default: false
+        type: boolean
+      check_missing:
+        description: 'Check missing listings'
+        required: false
+        default: false
+        type: boolean
+      update_unpublished_by_search:
+        description: 'Update unpublished status based on search results'
+        required: false
+        default: false
+        type: boolean
       search:
         description: 'Search config'
         required: false
@@ -32,7 +48,7 @@ env:
 jobs:
   data-scraping:
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ github.event.schedule == '0 3 * * *' && 120 || 60 }}  # 2 hours for revise, 1 hour for update
+    timeout-minutes: ${{ (github.event.schedule == '0 3 * * *' || inputs.check_missing_estimations) && 120 || 60 }}  # 2 hours for daily run or when checking estimations, 1 hour otherwise
     
     steps:
     - name: Checkout pipeline repository
@@ -100,8 +116,12 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         BASE_URL: ${{ secrets.BASE_URL }}
-        # Add any other environment variables needed for VPN/proxies
-        SCRAPER_MODE: ${{ inputs.mode || (github.event.schedule == '0 3 * * *' && 'revise') || vars.SCRAPER_MODE || 'update' }}
+        # Individual scraper parameters
+        UPDATE_CURRENT_SEARCH_LISTINGS: ${{ inputs.update_current_search_listings || 'false' }}
+        CHECK_IF_UNPUBLISHED: ${{ inputs.check_if_unpublished || (github.event.schedule && 'true') || 'true' }}
+        CHECK_MISSING_ESTIMATIONS: ${{ inputs.check_missing_estimations || (github.event.schedule == '0 3 * * *' && 'true') || 'false' }}
+        CHECK_MISSING: ${{ inputs.check_missing || 'false' }}
+        UPDATE_UNPUBLISHED_BY_SEARCH: ${{ inputs.update_unpublished_by_search || 'false' }}
         SCRAPER_SEARCH: ${{ inputs.search || vars.SCRAPER_SEARCH || 'wide' }}
       run: |
         cd pipeline
@@ -112,28 +132,21 @@ jobs:
         sys.path.append('.')
         from parse_data import ScraperPipeline
         
-        # Get mode and search from environment variables
-        mode = os.environ.get('SCRAPER_MODE', 'update')
+        # Get individual parameters from environment variables
+        update_current_search_listings = os.environ.get('UPDATE_CURRENT_SEARCH_LISTINGS', 'false').lower() == 'true'
+        check_if_unpublished = os.environ.get('CHECK_IF_UNPUBLISHED', 'true').lower() == 'true'
+        check_missing_estimations = os.environ.get('CHECK_MISSING_ESTIMATIONS', 'false').lower() == 'true'
+        check_missing = os.environ.get('CHECK_MISSING', 'false').lower() == 'true'
+        update_unpublished_by_search = os.environ.get('UPDATE_UNPUBLISHED_BY_SEARCH', 'false').lower() == 'true'
         search = os.environ.get('SCRAPER_SEARCH', 'wide')
         
-        print(f'🔧 Running in mode: {mode}, search: {search}')
-        
-        # Set parameters based on mode (matching scheduler.py logic)
-        if mode == 'new':
-            update_current_search_listings = True
-            check_if_unpublished = False
-            check_missing_estimations = False
-        elif mode == 'update':
-            update_current_search_listings = False
-            check_if_unpublished = True
-            check_missing_estimations = False
-        elif mode == 'revise':
-            update_current_search_listings = False
-            check_if_unpublished = True
-            check_missing_estimations = True
-        else:
-            print(f'❌ Unknown mode: {mode}')
-            sys.exit(1)
+        print(f'🔧 Running with parameters:')
+        print(f'  - update_current_search_listings: {update_current_search_listings}')
+        print(f'  - check_if_unpublished: {check_if_unpublished}')
+        print(f'  - check_missing_estimations: {check_missing_estimations}')
+        print(f'  - check_missing: {check_missing}')
+        print(f'  - update_unpublished_by_search: {update_unpublished_by_search}')
+        print(f'  - search: {search}')
         
         # Set search config path
         if search == 'narrow':
@@ -152,7 +165,9 @@ jobs:
                     search_config_path=search_config_path,
                     check_missing_estimations=check_missing_estimations,
                     check_if_unpublished=check_if_unpublished,
-                    update_current_search_listings=update_current_search_listings
+                    update_current_search_listings=update_current_search_listings,
+                    check_missing=check_missing,
+                    update_unpublished_by_search=update_unpublished_by_search
                 )
                 await pipeline.run()
                 print('✅ Scraper pipeline completed successfully')
@@ -189,13 +204,21 @@ jobs:
         # Get current timestamp
         timestamp=$(date '+%Y-%m-%d %H:%M:%S')
         
-        # Determine which schedule triggered this
+        # Determine trigger type and parameters
         if [ "${{ github.event.schedule }}" = "0 3 * * *" ]; then
-          schedule_type="(revise/wide daily)"
-        elif [ "${{ github.event.schedule }}" = "0 */6 * * *" ]; then
-          schedule_type="(update/wide 6-hourly)"
+          schedule_type="(daily run with estimations check)"
+        elif [ "${{ github.event.schedule }}" = "0 * * * *" ]; then
+          schedule_type="(hourly update)"
         else
-          schedule_type="(manual trigger)"
+          # Manual trigger - show parameters
+          params=""
+          [ "${{ inputs.update_current_search_listings }}" = "true" ] && params="${params} update_all"
+          [ "${{ inputs.check_if_unpublished }}" = "true" ] && params="${params} check_unpublished"
+          [ "${{ inputs.check_missing_estimations }}" = "true" ] && params="${params} check_estimations"
+          [ "${{ inputs.check_missing }}" = "true" ] && params="${params} check_missing"
+          [ "${{ inputs.update_unpublished_by_search }}" = "true" ] && params="${params} update_unpublished"
+          [ -z "$params" ] && params=" default"
+          schedule_type="(manual:${params})"
         fi
         
         # Create commit message
@@ -254,7 +277,7 @@ jobs:
         done
 
     - name: Trigger image processing workflow
-      if: steps.changes.outputs.has_changes == 'true' && (inputs.search || vars.SCRAPER_SEARCH || 'wide') == 'wide' && (inputs.mode || (github.event.schedule == '0 3 * * *' && 'revise') || vars.SCRAPER_MODE || 'update') == 'update'
+      if: steps.changes.outputs.has_changes == 'true' && (inputs.search || vars.SCRAPER_SEARCH || 'wide') == 'wide' && (!inputs.check_missing_estimations || 'false') == 'false'
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |

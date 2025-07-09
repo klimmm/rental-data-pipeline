@@ -15,6 +15,7 @@ import pandas as pd
 
 from scraper.scraper_config import AsyncConfig
 from scraper.async_scraper import AsyncScraper
+from scraper.html_parser import CianListingParser
 from distance import get_distance
 from data_process.flatten import flatten_listings
 from data_process.normalize import normalize_listings
@@ -40,15 +41,17 @@ class ScraperPipeline:
         data_dir,
         use_proxies,
         search_config_path,
-        check_missing_estimations,
-        check_if_unpublished,
-        update_current_search_listings,
-        should_scrape_new=True,
+        update_current_search_listings=False,
+        check_if_unpublished=True,
+        check_missing_estimations=False,
         check_missing=False,
+        update_unpublished_by_search=False,
+        should_scrape_new=True,
     ):
 
         self.check_missing_estimations = check_missing_estimations
         self.check_if_unpublished = check_if_unpublished
+        self.update_unpublished_by_search = update_unpublished_by_search
         self.update_current_search_listings = update_current_search_listings
         self.should_scrape_new = should_scrape_new
         self.check_missing = check_missing
@@ -148,7 +151,6 @@ class ScraperPipeline:
     def _get_scraper_configs(self):
         """Generate AsyncScraperConfig objects for each scraping phase."""
         base_dir = os.path.dirname(__file__)
-        scraper_scripts_dir = os.path.join(base_dir, "scraper", "js")
 
         def create_config(**overrides):
             """Factory function to create config with shared proxy_configs and custom overrides"""
@@ -160,19 +162,17 @@ class ScraperPipeline:
 
         configs = {
             "summary_extraction": create_config(
-                parsing_script_path=os.path.join(
-                    scraper_scripts_dir, "extract_summary.js"
-                ),
+                wait_for_selector='[data-name="SummaryHeader"], h5.error-code',
             ),
             "search_pages": create_config(
-                parsing_script_path=os.path.join(
-                    scraper_scripts_dir, "parse_search_page.js"
-                ),
+                wait_for_selector='[data-name="Offers"] [data-name="Gallery"], h5.error-code',
+                wait_for_selector_timeout=5000,
             ),
             "listing_pages": create_config(
-                parsing_script_path=os.path.join(
-                    scraper_scripts_dir, "parse_listing_page.js"
-                ),
+                #wait_for_selector='[data-name="OfferValuationContainerLoader"], [data-name="OfferUnpublished"], h5.error-code',
+                #fallback_wait_for_selector='[data-name="PriceInfo"]',
+                wait_for_selector='[data-name="PriceInfo"], [data-name="OfferUnpublished"], h5.error-code',
+                wait_for_selector_timeout=5000,
             ),
             "distance": create_config(
                 max_concurrent=5,
@@ -183,8 +183,22 @@ class ScraperPipeline:
 
     def _save_json(self, filename, data):
         """Save data to a JSON file."""
+        import math
+
+        def clean_data(obj):
+            """Recursively clean data to remove NaN values"""
+            if isinstance(obj, dict):
+                return {k: clean_data(v) for k, v in obj.items()}
+            elif isinstance(obj, list):
+                return [clean_data(item) for item in obj]
+            elif isinstance(obj, float) and math.isnan(obj):
+                return None
+            else:
+                return obj
+
+        cleaned_data = clean_data(data)
         with open(filename, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+            json.dump(cleaned_data, f, ensure_ascii=False, indent=2)
 
     def _load_json_file(self, filename):
         try:
@@ -201,10 +215,7 @@ class ScraperPipeline:
         self, db_listings, new_listings, merge_label, file_path
     ):
         """Merge and validate listings data."""
-        normalized_db_listings = normalize_listings(db_listings)
-        flat_new_listings = flatten_listings(new_listings)
-        normalized_new_listings = normalize_listings(flat_new_listings)
-        merged_data = merge_listings(normalized_db_listings, normalized_new_listings)
+        merged_data = merge_listings(db_listings, new_listings)
         self._save_json(file_path, merged_data)
         return merged_data
 
@@ -219,28 +230,107 @@ class ScraperPipeline:
 
         return await scraper.process_all(urls)
 
+    def _parse_raw_html_results(self, raw_results, extract_summary=False):
+        """Parse raw HTML results using the Python parser"""
+        parser = CianListingParser()
+        parsed_results = []
+
+        for result in raw_results:
+            if "error" in result:
+                # Keep error results as-is
+                parsed_results.append(result)
+                continue
+
+            try:
+                html = result.get("page_content", result.get("html", ""))
+                url = result.get("url", "")
+
+                # For summary extraction, always parse the full page
+                if extract_summary:
+                    parsed_data = parser.parse(html, url)
+                    parsed_results.append(parsed_data)
+                    continue
+
+                # Check if this is a search page by looking for card components
+                from bs4 import BeautifulSoup
+
+                soup = BeautifulSoup(html, "html.parser")
+                offers_container = soup.select_one('[data-name="Offers"]')
+
+                if offers_container:
+                    # This is a search page - split into individual cards
+                    cards = offers_container.select('[data-name="CardComponent"]')
+                    for card in cards:
+                        try:
+                            # Create individual HTML for each card
+                            card_html = f"<html><body>{str(card)}</body></html>"
+                            card_data = parser.parse(card_html, url)
+                            if card_data:  # Only add if parsing succeeded
+                                parsed_results.append(card_data)
+                        except Exception as e:
+                            self.logger.warning(
+                                f"Failed to parse individual card from {url}: {e}"
+                            )
+                            continue
+                else:
+                    # This is a regular page (listing or summary) - parse normally
+                    parsed_data = parser.parse(html, url)
+                    parsed_results.append(parsed_data)
+
+            except Exception as e:
+                # If parsing fails, create an error result
+                error_result = {
+                    "url": result.get("url", ""),
+                    "error": f"Parsing error: {str(e)}",
+                    "retries": result.get("retries", 0),
+                }
+                parsed_results.append(error_result)
+                self.logger.error(
+                    f"Failed to parse HTML for {result.get('url', '')}: {e}"
+                )
+
+        return parsed_results
+
     async def scrape_search_pages(self):
         """Step 2: Scrape all search result pages."""
         self.logger.info("Scraping search result pages...")
 
         try:
-            self.search_summary = await self._run_scraper(
+            raw_summary_results = await self._run_scraper(
                 "summary_extraction", [self.base_url]
             )
-            self.logger.info("Successfully extracted summary information")
+            self.search_summary = self._parse_raw_html_results(
+                raw_summary_results, extract_summary=True
+            )
             try:
+                num_listings_in_search = self.search_summary[0]["summary"]
+                self.logger.info(
+                    f"num_listings_in_search_summary {num_listings_in_search}"
+                )
                 self.total_pages = math.ceil(
-                    self.search_summary[0]["listings"] / self.listings_per_page
+                    num_listings_in_search / self.listings_per_page
                 )
             except (KeyError, IndexError, TypeError):
-                pass
+                self.logger.warning(
+                    "Could not extract summary count, using default pagination"
+                )
+                self.total_pages = 10
 
             search_urls = generate_search_page_urls(self.base_url, self.total_pages)
-            search_results = await self._run_scraper("search_pages", search_urls)
-            for result in search_results:
-                if "search_results" in result:
-                    self.current_search_listings.extend(result["search_results"])
-            self._save_json(self.image_urls_file, self.current_search_listings)
+            raw_search_results = await self._run_scraper("search_pages", search_urls)
+            # Parse the raw HTML results to extract search listings
+            parsed_search_results = self._parse_raw_html_results(raw_search_results)
+            # Each result is now an individual listing (card) processed by the parser
+            for result in parsed_search_results:
+                if isinstance(result, dict) and "offer_id" in result:
+                    # Individual listing from search card
+                    self.current_search_listings.append(result)
+                elif isinstance(result, dict) and "error" in result:
+                    # Error result - skip
+                    continue
+            self.logger.info(
+                f"num_listings_in_search_found {len(self.current_search_listings)}"
+            )
 
             self.logger.info(
                 f"Found {len(self.current_search_listings)} listings in search"
@@ -249,9 +339,17 @@ class ScraperPipeline:
                 listing["offer_id"] for listing in self.current_search_listings
             }
             self.missing_listings = self.db_active_ids - self.current_search_ids
-            for offer_id in self.missing_listings:
-                listing = {"offer_id": offer_id, "is_unpublished": True}
-                self.current_search_listings.append(listing)
+            if self.update_unpublished_by_search:
+                for offer_id in self.missing_listings:
+                    listing = {"offer_id": offer_id, "is_unpublished": True}
+                    self.current_search_listings.append(listing)
+            self._save_json(self.image_urls_file, self.current_search_listings)
+            self.current_search_listings = flatten_listings(
+                self.current_search_listings
+            )
+            self.current_search_listings = normalize_listings(
+                self.current_search_listings
+            )
 
             self.merged_data = self._normalize_merge_validate_save(
                 self.db_listings,
@@ -307,9 +405,15 @@ class ScraperPipeline:
                 f"Scraping {len(self.listings_to_scrape)} individual listing pages..."
             )
             listing_page_urls = generate_listing_page_urls(self.listings_to_scrape)
-            self.parsed_listings = await self._run_scraper(
+            raw_html_results = await self._run_scraper(
                 "listing_pages", listing_page_urls
             )
+
+            # Parse the raw HTML results
+            self.logger.info("Parsing HTML from scraped listing pages...")
+            self.parsed_listings = self._parse_raw_html_results(raw_html_results)
+            self.parsed_listings = flatten_listings(self.parsed_listings)
+            self.parsed_listings = normalize_listings(self.parsed_listings)
             self._save_json(self.parsed_listings_file, self.parsed_listings)
             self.merged_data = self._normalize_merge_validate_save(
                 self.merged_data,
