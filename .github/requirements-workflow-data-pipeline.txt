@@ -6,6 +6,7 @@ playwright>=1.40.0        # Browser automation (scraper/async_scraper.py)
 requests>=2.31.0          # HTTP requests (scraper/distance.py)
 aiohttp>=3.8.0           # Async HTTP requests (scraper/async_http_processor.py)
 pandas==2.1.3
+beautifulsoup4>=4.12.0    # HTML parsing (scraper/html_parser.py)
 # Configuration and data handling  
 PyYAML>=6.0               # YAML config files (data_process_utils/helpers.py)
 
