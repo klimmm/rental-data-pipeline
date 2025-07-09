@@ -48,7 +48,7 @@ env:
 jobs:
   data-scraping:
     runs-on: ubuntu-latest
-    timeout-minutes: ${{ (github.event.schedule == '0 3 * * *' || inputs.check_missing_estimations) && 120 || 60 }}  # 2 hours for daily run or when checking estimations, 1 hour otherwise
+    timeout-minutes: ${{ (github.event.schedule == '0 3 * * *' || inputs.check_missing_estimations) && 120 || 30 }}  # 2 hours for daily run or when checking estimations, 30 minutes otherwise
     
     steps:
     - name: Checkout pipeline repository
@@ -113,6 +113,7 @@ jobs:
         echo "Ensured data directory structure exists"
 
     - name: Run data scraping pipeline
+      timeout-minutes: 25
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         BASE_URL: ${{ secrets.BASE_URL }}
@@ -125,7 +126,8 @@ jobs:
         SCRAPER_SEARCH: ${{ inputs.search || vars.SCRAPER_SEARCH || 'wide' }}
       run: |
         cd pipeline
-        python -c "
+        echo "🚀 Starting data scraping pipeline with timeout protection..."
+        timeout 1400 python -c "
         import asyncio
         import sys
         import os
