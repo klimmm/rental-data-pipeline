@@ -118,7 +118,7 @@ jobs:
         BASE_URL: ${{ secrets.BASE_URL }}
         # Individual scraper parameters
         UPDATE_CURRENT_SEARCH_LISTINGS: ${{ inputs.update_current_search_listings || 'false' }}
-        CHECK_IF_UNPUBLISHED: ${{ inputs.check_if_unpublished || (github.event.schedule && 'true') || 'true' }}
+        CHECK_IF_UNPUBLISHED: ${{ inputs.check_if_unpublished || (github.event.schedule && 'true') || 'false' }}
         CHECK_MISSING_ESTIMATIONS: ${{ inputs.check_missing_estimations || (github.event.schedule == '0 3 * * *' && 'true') || 'false' }}
         CHECK_MISSING: ${{ inputs.check_missing || 'false' }}
         UPDATE_UNPUBLISHED_BY_SEARCH: ${{ inputs.update_unpublished_by_search || 'false' }}
