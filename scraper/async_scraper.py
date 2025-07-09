@@ -17,8 +17,14 @@ class AsyncScraper(BaseAsyncProcessor):
 
     def __init__(self, config):
         super().__init__(config)
-        with open(config.parsing_script_path, "r") as f:
-            self.parsing_script = f.read()
+        
+        # Handle cases where no parsing script is provided
+        if config.parsing_script_path:
+            with open(config.parsing_script_path, "r") as f:
+                self.parsing_script = f.read()
+        else:
+            self.parsing_script = None
+
 
     def _create_task(self, url: str) -> dict:
         """Convert URL to task dictionary"""
@@ -81,8 +87,77 @@ class AsyncScraper(BaseAsyncProcessor):
                 timeout=self.config.navigation_timeout,
                 wait_until=self.config.wait_until,
             )
+            
+            # Wait for critical elements if configured
+            if self.config.wait_for_selector:
+                element = None
+                try:
+                    element = await page.wait_for_selector(
+                        self.config.wait_for_selector,
+                        timeout=self.config.wait_for_selector_timeout,
+                        state='attached'
+                    )
+                    
+                    # Scroll to element if configured and element was found
+                    if element and self.config.scroll_to_element:
+                        await element.scroll_into_view_if_needed()
+                        await page.wait_for_timeout(2000)  # Wait for lazy loading
+                        
+                except Exception as e:
+                    # Try fallback selector if configured
+                    if self.config.fallback_wait_for_selector:
+                        try:
+                            logger.info(f"Primary selector failed, trying fallback selector '{self.config.fallback_wait_for_selector}' on {url}")
+                            element = await page.wait_for_selector(
+                                self.config.fallback_wait_for_selector,
+                                timeout=self.config.wait_for_selector_timeout,
+                                state='attached'
+                            )
+                            
+                            # Scroll to fallback element if found
+                            if element and self.config.scroll_to_element:
+                                await element.scroll_into_view_if_needed()
+                                await page.wait_for_timeout(2000)  # Wait for lazy loading
+                                
+                        except Exception as fallback_e:
+                            # Both primary and fallback failed
+                            self._increment_retry_count(task)
+                            will_retry = self._should_retry_task(task)
+                            
+                            error_msg = f"Both primary '{self.config.wait_for_selector}' and fallback '{self.config.fallback_wait_for_selector}' selectors failed on {url}: {e}, {fallback_e}"
+                            
+                            if will_retry:
+                                logger.error(f"{error_msg} - Will retry ({task['retries']}/{self.config.max_retries})")
+                                raise Exception(error_msg)
+                            else:
+                                logger.warning(f"{error_msg} - No more retries, continuing with partial results")
+                    else:
+                        # No fallback selector, handle as before
+                        self._increment_retry_count(task)
+                        will_retry = self._should_retry_task(task)
+                        
+                        error_msg = f"Timeout waiting for selector '{self.config.wait_for_selector}' on {url}: {e}"
+                        
+                        if will_retry:
+                            logger.error(f"{error_msg} - Will retry ({task['retries']}/{self.config.max_retries})")
+                            raise Exception(error_msg)
+                        else:
+                            logger.warning(f"{error_msg} - No more retries, continuing with partial results")
 
-            result = await page.evaluate(self.parsing_script)
+            # Execute parsing script if available
+            if self.parsing_script:
+                result = await page.evaluate(self.parsing_script)
+            else:
+                # No parsing script - start with basic info
+                result = {
+                    "timestamp": await page.evaluate("new Date().toISOString()")
+                }
+            
+            # Add page content if requested
+            if self.config.use_page_content:
+                page_content = await page.content()
+                result["html"] = page_content
+            
             result["url"] = url
             if task["retries"] > 0:
                 result["retries"] = task["retries"]

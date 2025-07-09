@@ -7,6 +7,9 @@ def merge_listings(target_data, source_data):
 
     # Merge source_data into target_data
     for item in source_data:
+        # Skip items that are not dictionaries
+        if not isinstance(item, dict):
+            continue
         if "offer_id" not in item and "offer_url" in item:
             for target_listing in target_by_id.values():
                 if target_listing.get("offer_url") == item["offer_url"]:

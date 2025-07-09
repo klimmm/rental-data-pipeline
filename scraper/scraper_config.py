@@ -7,8 +7,8 @@ class AsyncConfig:
     """Configuration for AsyncHttpProcessor adapted from AsyncScraperConfig"""
 
     # Concurrency settings (direct reuse)
-    max_concurrent: int = 3
-    max_tasks_per_client: int = 20  # Unified limit for browsers and sessions
+    max_concurrent: int = 2
+    max_tasks_per_client: int = 10  # Unified limit for browsers and sessions
     max_retries: int = 5
     use_proxies: bool = True
 
@@ -19,7 +19,7 @@ class AsyncConfig:
 
     additional_headers: Dict[str, str] = field(default_factory=dict)
 
-    parsing_script_path: str = "js/parse_listing_page.js"
+    parsing_script_path: str = None  # Optional - if None, returns raw HTML
     results_filename: str = None  # Auto-generated if None
     cookies_path: str = None
     use_cookies: bool = False
@@ -41,6 +41,15 @@ class AsyncConfig:
     timezone_id: str = "Europe/Moscow"
     color_scheme: str = "light"
     js_enabled: bool = True
+    
+    # Page loading behavior
+    wait_for_selector: str = None  # Optional selector to wait for before proceeding
+    wait_for_selector_timeout: int = 10000  # Timeout in ms for wait_for_selector
+    fallback_wait_for_selector: str = None  # Optional fallback selector if primary fails
+    scroll_to_element: bool = True  # Whether to scroll to the found element
+    
+    # Content extraction mode
+    use_page_content: bool = True  # If True, include page.content() in addition to parsing script results
 
     viewports: List[Dict[str, int]] = field(
         default_factory=lambda: [
