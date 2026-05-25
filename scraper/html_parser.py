@@ -186,9 +186,12 @@ class DataDrivenHtmlParser:
         if summary_header_element:
             summary_text = summary_header_element.get_text(strip=True)
             if summary_text:
-                match = re.search(r"(\d+)", summary_text)
+                # Cian formats counts with non-breaking-space thousands
+                # separator (e.g. "Найдено 1 062 объявления"). The previous
+                # \d+ regex grabbed only "1" and truncated the count.
+                match = re.search(r"\d+(?:[\s\xa0]\d{3})*", summary_text)
                 if match:
-                    result["summary"] = int(match.group(1))
+                    result["summary"] = int(re.sub(r"\D", "", match.group(0)))
 
         link_element = self.soup.select_one(
             '[data-name="LinkArea"] a[href*="/rent/flat/"]'
