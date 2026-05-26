@@ -465,11 +465,31 @@ class ScraperPipeline:
     def transform_and_convert_to_csv(self):
         """Step 5: Convert JSON data to CSV format."""
         try:
+            from datetime import datetime, timedelta
 
             df = pd.DataFrame(self.merged_data)
             df.to_csv(self.csv_file, index=False, encoding="utf-8")
 
-            self.logger.info(f"Successfully converted data to CSV at {self.csv_file}")
+            # Create filtered CSV with recent/active listings — this is what
+            # the dashboard reads. Filter: last_active within a week OR status
+            # is active.
+            filtered_csv_file = os.path.join(
+                self.base_dir, "combined_data_filtered.csv"
+            )
+            week_ago = datetime.now() - timedelta(weeks=1)
+            filtered_df = df[
+                (pd.to_datetime(df["last_active"], errors="coerce") >= week_ago)
+                | (df["status"] == "active")
+            ].copy()
+            filtered_df.to_csv(filtered_csv_file, index=False, encoding="utf-8")
+
+            self.logger.info(
+                f"Successfully converted data to CSV at {self.csv_file}"
+            )
+            self.logger.info(
+                f"Successfully created filtered CSV at {filtered_csv_file} "
+                f"with {len(filtered_df)} rows"
+            )
             return True
         except Exception as e:
             self.logger.error(f"Failed to transform and convert to CSV: {e}")
