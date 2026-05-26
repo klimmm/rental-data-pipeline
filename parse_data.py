@@ -175,7 +175,10 @@ class ScraperPipeline:
                 wait_for_selector_timeout=5000,
             ),
             "distance": create_config(
-                max_concurrent=5,
+                # Nominatim/OSRM public endpoints rate-limit at 1 req/sec.
+                # max_concurrent=5 caused bursts of 10-25 req/sec and got
+                # our IP banned. Drop to 1 to keep requests serial.
+                max_concurrent=1,
             ),
         }
 
