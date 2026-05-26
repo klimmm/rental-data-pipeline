@@ -279,7 +279,7 @@ jobs:
         done
 
     - name: Trigger image processing workflow
-      if: steps.changes.outputs.has_changes == 'true' && (inputs.search || vars.SCRAPER_SEARCH || 'wide') == 'wide' && (!inputs.check_missing_estimations || 'false') == 'false'
+      if: steps.changes.outputs.has_changes == 'true' && (inputs.search || vars.SCRAPER_SEARCH || 'wide') == 'wide'
       env:
         GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
       run: |
