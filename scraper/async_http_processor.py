@@ -14,6 +14,18 @@ logger = logging.getLogger(__name__)
 class AsyncHttpProcessor(BaseAsyncProcessor):
     """AsyncHttpProcessor refactored to inherit from BaseAsyncProcessor"""
 
+    # Circuit breaker: when a remote endpoint (e.g. Nominatim) starts
+    # rate-limiting us, stop hammering it. Retrying 429s 5× per request ×
+    # hundreds of requests both wastes ~30 min and reinforces the IP ban.
+    # After this many consecutive 429s, all subsequent tasks in this
+    # processor instance fail immediately without hitting the network.
+    _RATE_LIMIT_BREAKER_THRESHOLD = 5
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._consecutive_429s = 0
+        self._circuit_open = False
+
     def _create_task(self, request: dict) -> dict:
         return {"request": request, "retries": 0}
 
@@ -66,11 +78,47 @@ class AsyncHttpProcessor(BaseAsyncProcessor):
         headers = request.get("headers", None)
         request_id = request.get("request_id", url)
 
+        # Circuit breaker: if the endpoint has rate-limited us repeatedly,
+        # short-circuit without hitting the network. Lets the phase finish
+        # in seconds instead of grinding through retries against a banned IP.
+        if self._circuit_open:
+            return {
+                "request_id": request_id,
+                "url": url,
+                "error": "circuit_open: prior 429s tripped rate-limit breaker",
+                "status": 429,
+            }, False
+
         try:
             async with getattr(session, method.lower())(
                 url, params=params, data=data, headers=headers
             ) as response:
+                # 429 → don't retry, count toward circuit-breaker threshold.
+                # Retries on 429 just compound the abuse signal at the
+                # server and extend the ban.
+                if response.status == 429:
+                    self._consecutive_429s += 1
+                    if (
+                        not self._circuit_open
+                        and self._consecutive_429s >= self._RATE_LIMIT_BREAKER_THRESHOLD
+                    ):
+                        self._circuit_open = True
+                        logger.warning(
+                            f"Rate-limit circuit opened after "
+                            f"{self._consecutive_429s} consecutive 429s — "
+                            f"all subsequent requests will fail-fast."
+                        )
+                    await self._add_random_delay()
+                    return {
+                        "request_id": request_id,
+                        "url": url,
+                        "error": f"HTTP 429 Too Many Requests",
+                        "status": 429,
+                    }, False
+
                 response.raise_for_status()
+                # Successful response — reset consecutive 429 counter.
+                self._consecutive_429s = 0
 
                 content_type = response.headers.get("Content-Type", "")
                 if "application/json" in content_type:

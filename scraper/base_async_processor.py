@@ -51,11 +51,19 @@ class BaseAsyncProcessor(ABC):
             return proxy
 
     def _calculate_worker_count(self, task_count: int) -> int:
-        """Calculate optimal number of workers based on tasks and resources"""
-        return min(
-            task_count,
-            max(2, min(self.config.max_concurrent, len(self.working_proxies))),
-        )
+        """Calculate optimal number of workers based on tasks and resources.
+
+        Respects max_concurrent. When use_proxies=False, working_proxies is
+        empty — the prior `min(max_concurrent, len(working_proxies))` would
+        evaluate to 0, and `max(2, 0)` clamped the floor to 2 workers, which
+        silently overrode max_concurrent=1 and let two requests fire in
+        parallel against Nominatim/OSRM (banned us).
+        """
+        if not self.working_proxies:
+            cap = self.config.max_concurrent
+        else:
+            cap = min(self.config.max_concurrent, len(self.working_proxies))
+        return min(task_count, max(1, cap))
 
     async def process_all(self, items: List[Any]) -> List[Dict]:
         """Main entry point - process all items using workers"""
